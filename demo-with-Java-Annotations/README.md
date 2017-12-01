@@ -29,7 +29,7 @@ See project [https://github.com/nyla-solutions/gedi-geode/blob/master/gedi-geode
 
 Note configure PDX 
 
-		configure pdx --auto-serializable-classes="com.fidelity.gemfire.gemfiredemo.domain.*" --read-serialized=true
+		configure pdx --auto-serializable-classes="io.pivotal.gemfire.playground.orders.domain.*" --read-serialized=true
 
 *Restart the cache server*
 	

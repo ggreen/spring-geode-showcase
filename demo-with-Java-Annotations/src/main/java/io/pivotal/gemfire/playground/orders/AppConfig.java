@@ -1,4 +1,4 @@
-package io.pivotal.orders.gemfiredemo;
+package io.pivotal.gemfire.playground.orders;
 
 import java.util.Collections;
 import java.util.Properties;
@@ -9,15 +9,14 @@ import org.apache.geode.cache.client.ClientRegionFactory;
 import org.apache.geode.cache.client.ClientRegionShortcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.GemfireTemplate;
 import org.springframework.data.gemfire.listener.ContinuousQueryDefinition;
 import org.springframework.data.gemfire.listener.ContinuousQueryListenerContainer;
 
-import io.pivotal.orders.gemfiredemo.domain.Account;
-import io.pivotal.orders.gemfiredemo.listener.OrderListener;
+import io.pivotal.gemfire.playground.orders.domain.Account;
+import io.pivotal.gemfire.playground.orders.listener.OrderListener;
 
 @Configuration
 public class AppConfig
