@@ -1,4 +1,4 @@
-package com.fidelity.gemfire.gemfiredemo;
+package io.pivotal.gemfire.playground.orders.demo;
 
 import org.junit.Test;
 
