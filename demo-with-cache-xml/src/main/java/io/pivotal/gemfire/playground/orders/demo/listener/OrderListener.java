@@ -1,4 +1,4 @@
-package io.pivotal.orders.gemfiredemo.listener;
+package io.pivotal.gemfire.playground.orders.demo.listener;
 
 import org.apache.geode.cache.query.CqEvent;
 import org.springframework.data.gemfire.listener.ContinuousQueryListener;

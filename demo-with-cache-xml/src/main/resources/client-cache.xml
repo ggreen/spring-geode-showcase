@@ -38,7 +38,7 @@
     	 <constructor-arg value="io.pivotal.orders.gemfiredemo.domain.*"></constructor-arg>
     </bean>
     
-    <bean id="listener" class="io.pivotal.orders.gemfiredemo.listener.OrderListener">
+    <bean id="listener" class="io.pivotal.gemfire.playground.orders.listener.OrderListener">
     </bean>
     
 	<gfe:cq-listener-container id="orderListenerContainer">

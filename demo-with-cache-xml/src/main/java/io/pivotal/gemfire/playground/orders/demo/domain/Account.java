@@ -1,4 +1,4 @@
-package io.pivotal.orders.gemfiredemo.domain;
+package io.pivotal.gemfire.playground.orders.demo.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.gemfire.mapping.annotation.Region;

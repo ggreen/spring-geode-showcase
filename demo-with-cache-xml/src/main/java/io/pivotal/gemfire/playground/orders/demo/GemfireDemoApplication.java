@@ -1,4 +1,4 @@
-package io.pivotal.orders.gemfiredemo;
+package io.pivotal.gemfire.playground.orders.demo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,10 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import gedi.solutions.geode.io.Querier;
-import io.pivotal.orders.gemfiredemo.dao.AccountCrudRepository;
-import io.pivotal.orders.gemfiredemo.dao.OrderCrudRepository;
-import io.pivotal.orders.gemfiredemo.domain.Account;
-import io.pivotal.orders.gemfiredemo.domain.Order;
+import io.pivotal.gemfire.playground.orders.demo.dao.AccountCrudRepository;
+import io.pivotal.gemfire.playground.orders.demo.dao.OrderCrudRepository;
+import io.pivotal.gemfire.playground.orders.demo.domain.Account;
+import io.pivotal.gemfire.playground.orders.demo.domain.Order;
 import nyla.solutions.core.util.Organizer;
 
 @Controller
@@ -43,7 +43,7 @@ import nyla.solutions.core.util.Organizer;
 @EnableGemfireRepositories
 @EnablePdx(serializerBeanName = "pdxSerializer")
 @ImportResource(locations = {"classpath:client-cache.xml"})
-@EnableEntityDefinedRegions(basePackages = "io.pivotal.orders.gemfiredemo.domain")
+@EnableEntityDefinedRegions(basePackages = "io.pivotal.gemfire.playground.orders.demo.domain")
 @EnableSecurity
 public class GemfireDemoApplication {
 

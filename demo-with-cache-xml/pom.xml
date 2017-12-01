@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal.gemfire.playground</groupId>
-	<artifactId>gemfire-demo</artifactId>
+	<artifactId>demo-with-cache-xml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>gemfire-demo</name>
+	<name>demo-with-cache-xml</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
