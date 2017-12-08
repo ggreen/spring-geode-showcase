@@ -1,23 +1,13 @@
 package io.pivotal.gemfire.playground.orders.demo;
 
-import static org.junit.runners.MethodSorters.NAME_ASCENDING;
-
-import java.io.IOException;
-
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
 import org.apache.geode.cache.client.ClientRegionFactory;
 import org.apache.geode.cache.client.ClientRegionShortcut;
-import org.apache.geode.test.junit.categories.ClientServerTest;
-import org.apache.geode.test.junit.categories.IntegrationTest;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import static org.junit.Assert.*;
-
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
@@ -33,6 +23,15 @@ public class GemfireDemoApplicationTests {
 		qa.startCluster();
 		
 	}//------------------------------------------------
+	
+	@AfterClass
+	public static void shutdown()
+	throws Exception
+	{
+
+		qa.shutdown();
+		
+	}//------------------------------------------------
 	@Test
 	public void contextLoads() {
 		
@@ -44,6 +43,7 @@ public class GemfireDemoApplicationTests {
 	    region.put("1", "1");
 		
 		//assertEquals(region.get("1"),"1");
+	    cache.close();
 	}
 	
 	private static Gfsh qa = new Gfsh();
