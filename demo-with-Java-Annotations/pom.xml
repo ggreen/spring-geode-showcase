@@ -80,6 +80,11 @@
 			<artifactId>geode-lucene</artifactId>
 			<version>${gemfire.version}</version>
 		</dependency>
+			<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-junit</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>		
 		<!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
 		<dependency>
 		    <groupId>net.java.dev.jna</groupId>
@@ -108,6 +113,14 @@
 
 
 
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache-clustered</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

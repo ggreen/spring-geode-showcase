@@ -1,0 +1,11 @@
+
+[info 2017/12/07 20:12:07.500 EST <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.1.64(locator:53345:locator)<ec><v0>:1024|0] members: [192.168.1.64(locator:53345:locator)<ec><v0>:1024]
+
+[info 2017/12/07 20:13:32.715 EST <DM-MemberEventInvoker> tid=0x17] A new member joined: 192.168.1.64(server:53431)<v1>:1025.  View[192.168.1.64(locator:53345:locator)<ec><v0>:1024|1] members: [192.168.1.64(locator:53345:locator)<ec><v0>:1024, 192.168.1.64(server:53431)<v1>:1025{lead}]
+
+[info 2017/12/07 20:14:12.176 EST <main> tid=0x1] Log opened with new distributed system connection.  View[192.168.1.64(locator:53460:locator)<ec><v0>:1024|0] members: [192.168.1.64(locator:53460:locator)<ec><v0>:1024]
+
+[info 2017/12/07 20:15:16.695 EST <DM-MemberEventInvoker> tid=0x17] A new member joined: 192.168.1.64(server:53503)<v1>:1025.  View[192.168.1.64(locator:53460:locator)<ec><v0>:1024|1] members: [192.168.1.64(locator:53460:locator)<ec><v0>:1024, 192.168.1.64(server:53503)<v1>:1025{lead}]
+
+[info 2017/12/07 20:16:12.265 EST <P2P message reader for 192.168.1.64(server:53503)<v1>:1025 shared ordered uid=2 port=56926> tid=0x62] server count: 1 connected client count: 0 client subscription queue count: 0
+  current servers : 192.168.1.64(server:53503)<v1>:1025 
