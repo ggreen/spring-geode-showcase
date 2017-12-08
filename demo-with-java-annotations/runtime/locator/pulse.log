@@ -1,7 +1,0 @@
-2017-12-07 21:00:26,980 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] Context Initialized.. 
-2017-12-07 21:00:26,983 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] pulse.properties File Found 
-2017-12-07 21:00:26,984 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] GemFireVersion.properties File Found 
-2017-12-07 21:00:26,984 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] Pulse Version: 9.2.0 root 39 2017-11-10 15:27:32 +0000
-2017-12-07 21:00:26,986 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] pulsesecurity.properties File Found 
-2017-12-07 21:00:26,986 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] Checking whether Pulse is running in embedded mode..
-2017-12-07 21:00:26,986 INFO o.a.g.t.p.i.PulseAppListener [locator request thread[1]] Pulse is running in Embedded Mode..

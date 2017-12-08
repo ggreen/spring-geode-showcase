@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Organization: Pivotal Software, Inc.
-Title: pivotal-gemfire
-Version: 9.2.0
-Created-By: root
-
