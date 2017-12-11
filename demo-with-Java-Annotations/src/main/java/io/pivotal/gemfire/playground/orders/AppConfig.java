@@ -7,17 +7,29 @@ import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
 import org.apache.geode.cache.client.ClientRegionFactory;
 import org.apache.geode.cache.client.ClientRegionShortcut;
+import org.apache.geode.pdx.ReflectionBasedAutoSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.GemfireTemplate;
+import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
+import org.springframework.data.gemfire.config.annotation.EnableEntityDefinedRegions;
+import org.springframework.data.gemfire.config.annotation.EnablePdx;
+import org.springframework.data.gemfire.config.annotation.EnableSecurity;
 import org.springframework.data.gemfire.listener.ContinuousQueryDefinition;
 import org.springframework.data.gemfire.listener.ContinuousQueryListenerContainer;
-
+import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 import io.pivotal.gemfire.playground.orders.domain.Account;
 import io.pivotal.gemfire.playground.orders.listener.OrderListener;
 
+@EnableAutoConfiguration
+@ClientCacheApplication(name = "DataGemFireApplication", logLevel = "error")
+@EnableGemfireRepositories
+@EnablePdx(serializerBeanName = "pdxSerializer")
+@EnableEntityDefinedRegions(basePackages = "io.pivotal.gemfire.playground.orders.domain")
+@EnableSecurity
 @Configuration
 public class AppConfig
 {	
@@ -33,16 +45,25 @@ public class AppConfig
 		return gemfireProperties;
 	}
 	
+	/**
+	 * 
+	 * @param gemfireProperties the GemFire properties (see https://gemfire.docs.pivotal.io/geode/reference/topics/gemfire_properties.html)
+	 * @return Client cache
+	 * @throws Exception
+	 */
 	@Bean
 	@Autowired
 	public ClientCache gemfireCache(@Qualifier("gemfireProperties") Properties gemfireProperties)
 			throws Exception {
 
-		ClientCache gemfireCache = new ClientCacheFactory(gemfireProperties).create();
+		ClientCache gemfireCache = new ClientCacheFactory(gemfireProperties)
+		.setPoolSubscriptionEnabled(true)
+		.setPdxSerializer(
+		new ReflectionBasedAutoSerializer("io.pivotal.gemfire.playground.orders.domain.*"))
+		.create();
 		
 		return gemfireCache;
-		
-	}
+	}//------------------------------------------------
 	
 	@Bean
 	@Autowired
