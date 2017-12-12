@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:gfe="http://www.springframework.org/schema/gemfire"
+	   xmlns:gfe-data="http://www.springframework.org/schema/data/gemfire"
 	   xmlns:util="http://www.springframework.org/schema/util"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-	   	http://www.springframework.org/schema/gemfire 
-	   	http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+	   	http://www.springframework.org/schema/gemfire http://www.springframework.org/schema/gemfire/spring-gemfire.xsd
+	   	http://www.springframework.org/schema/data/gemfire http://www.springframework.org/schema/data/gemfire/spring-data-gemfire.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <util:properties id="gemfire-props">
@@ -14,6 +15,7 @@
         <prop key="security-username">admin</prop>
        <prop key="security-client-auth-init">gedi.solutions.geode.security.CryptionPropertyAuthInitialize</prop>
     </util:properties>
+    <gfe-data:repositories base-package="io.pivotal.gemfire.playground.orders.demo.dao" />
     
     <gfe:client-cache properties-ref="gemfire-props" pdx-serializer-ref="pdxSerializer">
     		
@@ -35,10 +37,10 @@
     		<constructor-arg ref="Accounts"></constructor-arg>
     </bean>
     <bean id="pdxSerializer" class="org.apache.geode.pdx.ReflectionBasedAutoSerializer">
-    	 <constructor-arg value="io.pivotal.orders.gemfiredemo.domain.*"></constructor-arg>
+    	 <constructor-arg value="io.pivotal.gemfire.playground.orders.demo.domain.*"></constructor-arg>
     </bean>
     
-    <bean id="listener" class="io.pivotal.gemfire.playground.orders.listener.OrderListener">
+    <bean id="listener" class="io.pivotal.gemfire.playground.orders.demo.listener.OrderListener">
     </bean>
     
 	<gfe:cq-listener-container id="orderListenerContainer">
