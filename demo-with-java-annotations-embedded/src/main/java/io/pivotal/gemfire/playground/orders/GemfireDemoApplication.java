@@ -72,7 +72,7 @@ public class GemfireDemoApplication {
 	
 	@GetMapping("/order/{id}")
     @ResponseBody
-    public Order findById(@PathVariable String id) {
+    public Order findOrderById(@PathVariable String id) {
         return orderCrudRepos.findById(id).get();
     }
 	
@@ -84,9 +84,15 @@ public class GemfireDemoApplication {
 		return true;
 	}
 	
+	
+	public Account findAccountById(String acctId)
+	{
+		return this.accountCrudRepos.findById(acctId).get();
+	}//------------------------------------------------
+	
 	@GetMapping("/orderPdx/{id}")
     @ResponseBody
-    public String findByIdWithPdx(@PathVariable String id) {
+    public String findOrderByIdWithPdx(@PathVariable String id) {
 		Object value = orderPdxRegion.get(id);
 	
 		if(PdxInstance.class.isAssignableFrom(value.getClass()))
@@ -101,7 +107,7 @@ public class GemfireDemoApplication {
 	
 	@GetMapping("/order/symbol/{symbol}")
     @ResponseBody
-    public Order findBySymbol(@PathVariable String symbol) {
+    public Order findOrderBySymbol(@PathVariable String symbol) {
         return orderCrudRepos.findBySymbol(symbol);
     }
 	
