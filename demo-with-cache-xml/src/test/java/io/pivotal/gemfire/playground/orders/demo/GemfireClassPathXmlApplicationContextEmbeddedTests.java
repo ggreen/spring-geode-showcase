@@ -28,7 +28,7 @@ import nyla.solutions.core.patterns.jmx.JMX;
  * @author Gregory Green
  *
  */
-public class GemfireClassPathXmlApplicationContextTests {
+public class GemfireClassPathXmlApplicationContextEmbeddedTests {
 
 	/**
 	 * The Spring boot based app.

@@ -5,9 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
-
 import java.util.Optional;
-
 import io.pivotal.gemfire.playground.orders.dao.AccountCrudRepository;
 import io.pivotal.gemfire.playground.orders.dao.OrderCrudRepository;
 import io.pivotal.gemfire.playground.orders.domain.Account;
@@ -27,8 +25,12 @@ public class GemfireDemoApplicationMockitoTest
 	{
 		account = new Account();
 		app = new GemfireDemoApplication();
+		
+		
 		app.accountCrudRepos = mock(AccountCrudRepository.class);
+		
 		accOpt = Optional.of(account);
+		
 		when(app.accountCrudRepos.findById(any())).thenReturn(accOpt);
 		
 		order = new Order();
@@ -46,7 +48,12 @@ public class GemfireDemoApplicationMockitoTest
 		account.setName("account");
 		
 		assertTrue(app.saveAccount(account));
-		assertEquals(account,app.findAccountById(account.getId()));
+		Account output = app.findAccountById(account.getId());
+		
+		assertEquals(account,output);
+		assertEquals("junit", output.getId());
+		assertEquals("account", output.getName());
+		
 	}
 	@Test
 	public void testSaveOrder()

@@ -1,5 +1,7 @@
 package io.pivotal.gemfire.playground.orders;
 import static org.junit.Assert.*;
+
+import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.junit.AfterClass;
@@ -86,7 +88,7 @@ public class GemfireAnnotationConfigApplicationContextTests {
 	@Test
 	public void contextLoads() {
 		
-		ClientCache cache = ctx.getBean("gemfireCache",ClientCache.class);
+		Cache cache = ctx.getBean("gemfireCache",Cache.class);
 		assertNotNull(cache);
 	}//------------------------------------------------
 	/**
