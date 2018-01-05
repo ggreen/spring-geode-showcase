@@ -93,20 +93,8 @@ public class GemfireClassPathXmlApplicationContextEmbeddedTests {
 	@Test
 	public void contextLoads() {
 		
-		
 		ClientCache cache = ctx.getBean("gemfireCache",ClientCache.class);
 		assertNotNull(cache);
-	}//------------------------------------------------
-	@Test
-	public void testSaveAcccount() throws Exception
-	{
-		Account acct = new Account();
-		acct.setId("junitAcct");
-		acct.setName("Testing name");
-		assertTrue(app.saveAccount(acct));
-		
-		assertEquals(acct,app.accountsTemplate.get(acct.getId()));
-		assertEquals(acct,app.accountCrudRepos.findById(acct.getId()).get());
 	}//------------------------------------------------
 	
 	@Test
