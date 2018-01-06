@@ -2,7 +2,6 @@ package io.pivotal.gemfire.playground.orders.demo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.RegionShortcut;
@@ -17,7 +16,6 @@ import org.springframework.data.gemfire.GemfireTemplate;
 import gedi.solutions.geode.qa.GUnit;
 import io.pivotal.gemfire.playground.orders.demo.dao.AccountCrudRepository;
 import io.pivotal.gemfire.playground.orders.demo.dao.OrderCrudRepository;
-import io.pivotal.gemfire.playground.orders.demo.domain.Account;
 import io.pivotal.gemfire.playground.orders.demo.domain.ExampleObjectWithJsonObject;
 import nyla.solutions.core.patterns.jmx.JMX;
 
@@ -30,7 +28,7 @@ import nyla.solutions.core.patterns.jmx.JMX;
  * @author Gregory Green
  *
  */
-public class GemfireClassPathXmlApplicationContextEmbeddedTests {
+public class DemoXmlCacheXmlCustomSerializerTests {
 
 	/**
 	 * The Spring boot based app.
