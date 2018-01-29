@@ -3,4 +3,74 @@
   <groupId>io.pivotal.gemfire.playground</groupId>
   <artifactId>demo-functions</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+   <packaging>jar</packaging>
+
+	<name>demo-functions</name>
+	<description>Demo project for functions</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+        <spring.version>5.0.1.RELEASE</spring.version>
+        <spring-data-releasetrain.version>Kay-SR1</spring-data-releasetrain.version>
+        <spring-shell.version>1.2.0.RELEASE</spring-shell.version>
+        <gemfire.version>9.2.0</gemfire.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    		<maven.compiler.target>1.8</maven.compiler.target>        
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<artifactId>geode-core</artifactId>
+			<groupId>io.pivotal.gemfire</groupId>
+			<version>9.2.0</version>
+		</dependency>
+	<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-core</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-wan</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-cq</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-lucene</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>
+			<dependency>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-junit</artifactId>
+			<version>${gemfire.version}</version>
+		</dependency>		
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>2.8.2</version>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/com.github.nyla-solutions/gedi-geode-extensions-core --> 
+<!-- 		<dependency> -->
+<!-- 		    <groupId>com.github.nyla-solutions</groupId> -->
+<!-- 		    <artifactId>gedi-geode-extensions-core</artifactId> -->
+<!-- 		    <version>1.1.1</version> -->
+<!-- 		</dependency> -->
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>gemfire-release-repo</id>
+			<name>Pivotal GemFire Release Repository</name>
+			<url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url>
+		</repository>
+	</repositories>
+
 </project>

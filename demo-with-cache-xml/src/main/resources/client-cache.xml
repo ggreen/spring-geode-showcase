@@ -13,19 +13,23 @@
     <util:properties id="gemfire-props">
         <prop key="log-level">config</prop>
         <prop key="security-username">admin</prop>
+  
        <prop key="security-client-auth-init">gedi.solutions.geode.security.CryptionPropertyAuthInitialize</prop>
     </util:properties>
     <gfe-data:repositories base-package="io.pivotal.gemfire.playground.orders.demo.dao" />
     
-    <gfe:client-cache properties-ref="gemfire-props" pdx-serializer-ref="pdxSerializer">
+    <gfe:client-cache properties-ref="gemfire-props" pdx-serializer-ref="pdxSerializer" pdx-read-serialized="false">
     		
     </gfe:client-cache>
 
     <gfe:pool  subscription-enabled="true">
-    		<gfe:locator host="localhost" port="10334"/>
+    		<gfe:locator host="Gregorys-MBP" port="10000"/>
     </gfe:pool>
 
 	<gfe:client-region id="Order" shortcut="PROXY"/>
+	<gfe:client-region id="OrderDetail" shortcut="PROXY"/>
+	<gfe:client-region id="InMsg" shortcut="PROXY"/>
+	<gfe:client-region id="OutMsg" shortcut="PROXY"/>
 	<gfe:client-region id="Accounts" shortcut="PROXY"/>
 
 
