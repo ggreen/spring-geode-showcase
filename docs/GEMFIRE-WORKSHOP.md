@@ -150,6 +150,26 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 -H 'accept: */*'
 ```
 
+----------------
+
+# Scalability
+
+```shell
+cd ~/projects/gemfire/spring-geode-showcase
+k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/
+k get pods
+```
+
+```shell
+for i in $(seq 1 2000);
+do
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
+sleep 1s
+done
+```
+
+
 
 ```shell script
 curl -X 'DELETE' \
@@ -157,3 +177,14 @@ curl -X 'DELETE' \
   -H 'accept: */*'
   
 ```
+
+In new shell
+```shell
+k delete pod gemfire1-locator-0
+```
+
+
+Look for errors (if exists)
+
+Kill loop 
+
