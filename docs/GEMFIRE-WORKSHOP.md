@@ -32,26 +32,22 @@ kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
 cd ../..
 kubectl apply -f cloud/k8/config-maps.yml
 
+
+
+
+```shell script
+kubectl exec -it gemfire1-locator-0 -- gfsh
+```
+
+```shell script
+connect
+create region --name=Account --type=PARTITION
+```
+
 kubectl apply -f cloud/k8/apps
 
-
-**Instal k9s**
-wget https://github.com/derailed/k9s/releases/download/v0.24.14/k9s_Linux_x86_64.tar.gz
-tar xvf k9s_Linux_x86_64.tar.gz
-sudo cp ./k9s /usr/local/bin/
-
-
-*Shell into locator*
-gfsh
-connect
-
-create region --name=Account --type=PARTITION
-
-
+k get pods
 sudo /usr/local/bin/kubectl port-forward YOUR-POD-ID
-
-curl http://169.254.169.254/latest/meta-data/public-hostname
-ec2-3-128-179-174.us-east-2.compute.amazonaws.com
 
 
 ------
@@ -70,9 +66,88 @@ curl -X 'POST' \
 
 
 ```shell script
-curl -X 'GET' \
-  'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
   -H 'accept: */*'
+```
+
+
+--------------------
+**K8 Auto Healing**
+
+```shell script
+k delete pod gemfire1-server-0
+k get pods
+
+```
+
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
+
+```shell script
+curl -X 'POST' \
+'http://localhost:8080/save' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{
+"id": "1",
+"name": "Acct 1"
+}'
+```
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
+
+```
+------------------
+
+**GemFire Persistence**
+
+
+```shell script
+kubectl exec -it gemfire1-locator-0 -- gfsh
+```
+
+```shell script
+connect
+destroy region --name=/Account
+create region --name=Account --type=PARTITION_PERSISTENT
+exit
+```
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
+```
+
+
+```shell script
+curl -X 'POST' \
+'http://localhost:8080/save' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{
+"id": "1",
+"name": "Acct 1"
+}'
+```
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
+```
+
+
+```shell script
+k delete pod gemfire1-server-0
+k get pods
+```
+
+Wait for gemfire1-server-0 in running stats
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+-H 'accept: */*'
 ```
 
 

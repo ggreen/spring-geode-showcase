@@ -11,7 +11,7 @@ This workshop explores the use of Tanzu GemFire for fast access to application d
 2 - How availability of data can be maintained in light of node/pod failures and or whole site failures.
 3 - How to take advantage of Tanzu GemFire availability build resilience into your applications
 4 - How to build, run, and test your applications at scale
-Usage of Spring Data and Spring Boot abstractions for Tanzu GemFire
+-  Usage of Spring Data and Spring Boot abstractions for Tanzu GemFire
 How developers can configure applications to enable Tanzu GemFire for caching based on design patterns widely used in Cloud-Native Applications
 How to configure GemFire persistence for High Availability and Fault Tolerant
 How to setup multiple WAN replication clusters for active-active for active passive GemFire clusters
