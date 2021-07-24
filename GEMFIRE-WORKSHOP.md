@@ -59,7 +59,9 @@ kubectl create secret docker-registry image-pull-secret --docker-server=registry
 kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privileged --serviceaccount=gemfire-system:default
 helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
-k apply -f ./gemfire1.yaml
+cd projects/gemfire/spring-geode-showcase
+
+kubectl apply -f ./gemfire1.yaml
 251  k get pods
 252  history | grep rm
 253  k get pods
