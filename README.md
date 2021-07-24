@@ -1,6 +1,7 @@
 # spring-geode-showcase
 
 
+
 # edge-computing-vital-signs-showcase
 
 
@@ -34,9 +35,10 @@ nodes:
 
 sudo systemctl start docker
 
+sudo yum install  kubectl
+
 sudo kind create cluster  --config k8-1wnode.yaml
 
-sudo yum install  kubectl
 
 
 
@@ -46,6 +48,7 @@ sudo yum install  kubectl
     sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
     alias k='kubectl'
 
+    rm -rf /$HOME/.kube
     sudo cp -r /root/.kube /$HOME/.kube
     sudo chown -R $USER $HOME/.kube
 
@@ -94,7 +97,7 @@ spec:
   locators:           
     replicas: 1                   
   servers:
-    replicas: 2     
+    replicas: 1     
 ```
 
 k apply -f ./gemfire1.yaml
@@ -141,10 +144,25 @@ kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
 cd ../..
 kubectl apply -f cloud/k8/config-maps.yml
 
+kubectl apply -f cloud/k8/apps
+
+
+**Instal k9s**
+wget https://github.com/derailed/k9s/releases/download/v0.24.14/k9s_Linux_x86_64.tar.gz
+tar xvf k9s_Linux_x86_64.tar.gz
+sudo cp ./k9s /usr/local/bin/
+
+
+*Shell into locator*
+gfsh
+connect
+
+create region --name=Account --type=PARTITION
+
+
+sudo /usr/local/bin/kubectl port-forward YOUR-POD-ID
 
 curl http://169.254.169.254/latest/meta-data/public-hostname
 ec2-3-128-179-174.us-east-2.compute.amazonaws.com
 
-
-java -jar applications/spring-geode-showcase/target/spring-geode-showcase-0.0.1-SNAPSHOT.jar --server.port-80
 
