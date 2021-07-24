@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+  name:  spring-geode-showcase
+spec:
+  replicas: 1
+    spec:
+      containers:
+        - env:
+            - name: spring.data.gemfire.pool.locators
+              valueFrom:
+                configMapKeyRef:
+                  name: geode-configmap
+                  key: spring.data.gemfire.pool.locators
+          image: spring-geode-showcase:0.0.1-SNAPSHOT
+          name: vspring-geode-showcase

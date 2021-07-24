@@ -118,9 +118,31 @@ source /etc/profile.d/jdk11.sh
 
 git clone https://github.com/Tanzu-Solutions-Engineering/edge-computing-vital-signs-showcase.git
 cd ~
-wget https://apache.claz.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
-git clone https://github.com/Tanzu-Solutions-Engineering/edge-computing-vital-signs-showcase.git
 
+wget https://apache.claz.org/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz
 tar xvf apache-maven-3.8.1-bin.tar.gz
 export PATH=$PATH:$HOME/apache-maven-3.8.1/bin
+
+git clone https://github.com/Tanzu-Solutions-Engineering/edge-computing-vital-signs-showcase.git
+git clone https://github.com/ggreen/spring-geode-showcase.git
+
+
+
+sudo groupadd docker
+sudo usermod -aG docker ${USER}
+sudo su -s ${USER}
+
+
+cd applications/spring-geode-showcase/
+mvn spring-boot:build-image
+
+
+kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
+
+
+curl http://169.254.169.254/latest/meta-data/public-hostname
+ec2-3-128-179-174.us-east-2.compute.amazonaws.com
+
+
+java -jar applications/spring-geode-showcase/target/spring-geode-showcase-0.0.1-SNAPSHOT.jar --server.port-80
 
