@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: geode-configmap
+data:
+  spring.data.gemfire.pool.locators: "gemfire1-locator[10334]"
