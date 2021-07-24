@@ -1,8 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
+metadata:
+  labels:
+    run:  spring-geode-showcase
   name:  spring-geode-showcase
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      name:  spring-geode-showcase
+  template:
+    metadata:
+      labels:
+        name:  spring-geode-showcase
     spec:
       containers:
         - env:
