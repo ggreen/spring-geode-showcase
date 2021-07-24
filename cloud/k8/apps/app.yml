@@ -12,4 +12,4 @@ spec:
                   name: gemfire1-config
                   key: locators
           image: spring-geode-showcase:0.0.1-SNAPSHOT
-          name: vspring-geode-showcase
+          name: spring-geode-showcase
