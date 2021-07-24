@@ -9,7 +9,7 @@ spec:
             - name: spring.data.gemfire.pool.locators
               valueFrom:
                 configMapKeyRef:
-                  name: geode-configmap
-                  key: spring.data.gemfire.pool.locators
+                  name: gemfire1-config
+                  key: locators
           image: spring-geode-showcase:0.0.1-SNAPSHOT
           name: vspring-geode-showcase

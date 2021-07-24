@@ -138,6 +138,8 @@ mvn spring-boot:build-image
 
 
 kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
+cd ../..
+kubectl apply -f cloud/k8/config-maps.yml
 
 
 curl http://169.254.169.254/latest/meta-data/public-hostname
