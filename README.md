@@ -39,3 +39,15 @@ Intro to Spring Boot
 Intro to Spring Data (video, 30 min)
 Spring Boot documentation
 Spring Data documentation
+
+
+------
+
+How Apache Geode can be used to meet needs such as
+High Availability
+NoSQL characteristics
+Fault Tolerance
+Scalability
+WAN Replication
+Performance
+Strong Consistency
