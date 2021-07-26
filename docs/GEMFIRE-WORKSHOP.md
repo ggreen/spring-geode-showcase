@@ -188,3 +188,48 @@ Look for errors (if exists)
 
 Kill loop 
 
+
+create region --name=Location --type=PARTITION --colocated-with=/Account
+
+query --query="select * from /Account"
+
+
+```shell
+curl -X 'POST' \
+  'http://localhost:8080/save' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "account": {
+    "id": "ACCT-C",
+    "name": "Account C"
+  },
+  "location": {
+    "id": "ACCT-C",
+    "address": "123 ACCT-C Street",
+    "city": "NYC",
+    "stateCode": "NY",
+    "zipCode": "02323"
+  }
+}'
+```
+
+````shell
+curl -X 'POST' \
+'http://localhost:8080/save' \
+-H 'accept: */*' \
+-H 'Content-Type: application/json' \
+-d '{
+"account": {
+"id": "ACCT-C",
+"name": "Account C-invalid"
+},
+"location": {
+"id": "ACCT-C",
+"address": "123 ACCT-C Street-INVALID",
+"city": "NYC",
+"stateCode": "NY",
+"zipCode": "INVALID"
+}
+}'
+````

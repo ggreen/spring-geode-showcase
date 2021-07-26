@@ -12,6 +12,7 @@
 
     <modules>
 	     <module>applications/spring-geode-showcase</module>
+         <module>applications/spring-geode-kotlin-transaction</module>
     </modules>
     <build>
         <pluginManagement>
