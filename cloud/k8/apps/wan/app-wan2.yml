@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run:  spring-geode-showcase-wan2
+  name:  spring-geode-showcase-wan2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name:  spring-geode-showcase-wan2
+  template:
+    metadata:
+      labels:
+        name:  spring-geode-showcase-wan2
+    spec:
+      containers:
+        - env:
+            - name: spring.data.gemfire.pool.locators
+              valueFrom:
+                configMapKeyRef:
+                  name: gemfire2-config
+                  key: locators
+          image: spring-geode-showcase:0.0.1-SNAPSHOT
+          name: spring-geode-showcase-wan2

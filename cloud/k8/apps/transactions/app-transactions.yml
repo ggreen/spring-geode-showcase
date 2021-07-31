@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run:  spring-geode-kotlin-transaction
+  name:  spring-geode-kotlin-transaction
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name:  spring-geode-kotlin-transaction
+  template:
+    metadata:
+      labels:
+        name:  spring-geode-kotlin-transaction
+    spec:
+      containers:
+        - env:
+            - name: spring.data.gemfire.pool.locators
+              valueFrom:
+                configMapKeyRef:
+                  name: gemfire1-config
+                  key: locators
+          image: spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
+          name: spring-geode-kotlin-transaction

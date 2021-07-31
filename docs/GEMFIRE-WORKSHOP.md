@@ -1,6 +1,10 @@
 
 
 ------
+
+# Pre-Workshop Setup
+
+```shell
 sudo systemctl start docker
 docker ps
 sudo kind create cluster  --config k8-1wnode.yaml
@@ -19,39 +23,54 @@ kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privilege
 helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
 cd ~/projects/gemfire/spring-geode-showcase
-
-k apply -f cloud/k8/data-services/exercise1/gemfire1.yml
+git pull
+kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
+```
 
 ---
 
+
+
+# Build Application Docker Image
+
+```shell
 cd ~/projects/gemfire/spring-geode-showcase/applications/spring-geode-showcase/
 mvn spring-boot:build-image
-
-
 kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
-cd ../..
+```
+
+## Deploy application
+```shell
+cd ~/projects/gemfire/spring-geode-showcase/
 kubectl apply -f cloud/k8/config-maps.yml
+```
 
-
-
-
+## Configure GemFire 
 ```shell script
 kubectl exec -it gemfire1-locator-0 -- gfsh
 ```
 
+In Gfsh
+
 ```shell script
 connect
 create region --name=Account --type=PARTITION
+exit
 ```
 
-kubectl apply -f cloud/k8/apps
 
-k get pods
-sudo /usr/local/bin/kubectl port-forward YOUR-POD-ID
+Deploy applications
+```shell
+kubectl apply -f cloud/k8/apps
+kubectl get pods
+```
+
+
+sudo /usr/local/bin/kubectl port-forward deployment/spring-geode-showcase 8080:8080
 
 
 ------
-
+## Data Access
 
 ```shell script
 curl -X 'POST' \
@@ -77,11 +96,16 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 ```shell script
 k delete pod gemfire1-server-0
 k get pods
-
 ```
 
+
+Error (before pod is recreated) or null once restarted
+```shell
 curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 -H 'accept: */*'
+```
+
+Repost data
 
 ```shell script
 curl -X 'POST' \
@@ -101,7 +125,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 ```
 ------------------
 
-**GemFire Persistence**
+## GemFire Persistence
 
 
 ```shell script
@@ -115,6 +139,7 @@ create region --name=Account --type=PARTITION_PERSISTENT
 exit
 ```
 
+Null Value
 ```shell script
 curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 -H 'accept: */*'
@@ -154,6 +179,8 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 
 # Scalability
 
+## Scale Locator
+
 ```shell
 cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/
@@ -170,6 +197,10 @@ done
 ```
 
 
+## Scale Locator
+
+
+k apply - f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-1data.yml
 
 ```shell script
 curl -X 'DELETE' \
@@ -189,10 +220,89 @@ Look for errors (if exists)
 Kill loop 
 
 
-create region --name=Location --type=PARTITION --colocated-with=/Account
+## Scale Data
 
-query --query="select * from /Account"
+```shell
+k apply -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
+```
 
+```shell
+kubectl exec -it gemfire1-locator-0 -- gfsh
+```
+
+```shell script
+connect
+destroy region --name=/Account
+create region --name=Account --type=PARTITION_REDUNDANT --startup-recovery-delay=1000
+exit
+```
+
+```shell script
+curl -X 'POST' \
+  'http://localhost:8080/save' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": "1",
+  "name": "Acct 1"
+}'
+```
+
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+  -H 'accept: */*'
+```
+
+k delete pod gemfire1-server-0
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+  -H 'accept: */*'
+```
+
+```shell
+kubectl delete pod gemfire1-server-1
+```
+
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+  -H 'accept: */*'
+```
+
+```shell
+kubectl delete pod gemfire1-server-2
+```
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+  -H 'accept: */*'
+```
+
+
+
+# Consistency Check
+
+
+Gfsh 
+
+
+```shell
+kubectl exec -it gemfire1-locator-0 -- gfsh
+```
+
+```shell
+kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "destroy region --name=/Account"
+kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_PERSISTENT"
+kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create region --name=Location --type=PARTITION_PERSISTENT --colocated-with=/Account"
+```
+
+```shell
+cd applications/spring-geode-kotlin-transaction/
+mvn clean package spring-boot:build-image
+kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
+```
 
 ```shell
 curl -X 'POST' \
@@ -233,3 +343,90 @@ curl -X 'POST' \
 }
 }'
 ````
+
+-----------------------
+
+# WAN Replication
+
+```shell
+k delete -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
+```
+
+Wait for pods to terminate
+```shell
+watch kubectl get pods
+```
+
+
+```shell
+k apply -f cloud/k8/data-services/exercise-scalability/03-WAN/gemfire1-2loc-3data.yml
+```
+
+Wait for pods to be ready
+```shell
+watch kubectl get pods
+```
+
+```shell
+k apply -f cloud/k8/data-services/exercise-scalability/03-WAN/gemfire2-2loc-3data.yml
+```
+
+Wait for pods to be ready
+```shell
+watch kubectl get pods
+```
+
+```shell
+kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create gateway-receiver"
+```
+```shell
+kubectl exec -it gemfire2-locator-0 -- gfsh -e connect  -e "create gateway-sender --id=Account_Sender_to_1 --parallel=true  --remote-distributed-system-id=1 --enable-persistence=true --enable-batch-conflation=true" 
+kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_PERSISTENT --gateway-sender-id=Account_Sender_to_1"
+kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Location --type=PARTITION_PERSISTENT --colocated-with=/Account  --gateway-sender-id=Account_Sender_to_1"
+```
+
+
+
+```shell
+k apply -f cloud/k8/apps/wan/app-transactions-wan2.yml
+```
+
+
+```shell
+k apply -f cloud/k8/apps/wan/app-wan2.yml
+```
+```shell
+kubectl port-forward deployment/spring-geode-kotlin-transaction-wan2 9090:8080
+```
+
+```shell
+kubectl port-forward deployment/spring-geode-showcase-wan2  9092:8080
+```
+
+
+
+Empty
+
+```shell script
+curl -X 'GET' 'http://localhost:9092/findById?s=ACCT-WAN' \
+  -H 'accept: */*'
+```
+
+
+
+```shell script
+curl -X 'POST' \
+  'http://localhost:9092/save' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": "ACCT-WAN",
+  "name": "Acct ACCT-WAN"
+}'
+```
+
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=WAN' \
+  -H 'accept: */*'
+```

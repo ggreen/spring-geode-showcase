@@ -6,9 +6,9 @@ AMI: 8 GB RAM, 30 GB disk, 2 CPU
 chmod 400 aws-ohio-playground.pem
 ssh -i "/Users/devtools/paaS/AWS/secrets/aws-ohio-playground.pem"  ec2-user@ec2-3-128-179-174.us-east-2.compute.amazonaws.com
 
-sudo yum install java
+sudo apt-get install openjdk-11-jdk
+apt install docker.io
 
-sudo yum install docker
 
 curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
 chmod +x ./kind
@@ -28,11 +28,10 @@ nodes:
 ```
 
 sudo systemctl start docker
+sudo systemctl enable docker
 
-sudo yum install  kubectl
-
-sudo kind create cluster  --config k8-1wnode.yaml
-
+curl -LO https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 
 
@@ -96,7 +95,7 @@ spec:
 
 k apply -f ./gemfire1.yaml
 
-sudo yum install git
+apt install git
 
 ----
 sudo yum remove java
@@ -127,7 +126,7 @@ git clone https://github.com/ggreen/spring-geode-showcase.git
 
 sudo groupadd docker
 sudo usermod -aG docker ${USER}
-sudo su -s ${USER}
+newgrp docker
 
 
 cd applications/spring-geode-showcase/
