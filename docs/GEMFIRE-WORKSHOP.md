@@ -5,28 +5,33 @@
 # Pre-Workshop Setup
 
 ```shell
-sudo systemctl start docker
-docker ps
+# Create K8 Cluster 1 worker node
 sudo kind create cluster  --config k8-1wnode.yaml
 sudo cp -r /root/.kube /$HOME/.kube
 sudo chown -R $USER $HOME/.kube
-kubectl create namespace cert-manager
 
+
+# Set GemFire Pre-Requisite 
+ 
+kubectl create namespace cert-manager
 helm repo add jetstack https://charts.jetstack.io
 helm repo update
 helm install cert-manager jetstack/cert-manager --namespace cert-manager  --version v1.0.2 --set installCRDs=true
 kubectl create namespace gemfire-system
-
 kubectl create secret docker-registry image-pull-secret --namespace=gemfire-system --docker-server=registry.pivotal.io --docker-username=$HARBOR_USER --docker-password=$HARBOR_PASSWORD
 kubectl create secret docker-registry image-pull-secret --docker-server=registry.pivotal.io --docker-username=$HARBOR_USER --docker-password=$HARBOR_PASSWORD
 kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privileged --serviceaccount=gemfire-system:default
+
+
+# Install the GemFire Operator
 helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
+
+# Create GemFire Cluster
 cd ~/projects/gemfire/spring-geode-showcase
 git pull
 kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
 ```
-
 ---
 
 
@@ -70,6 +75,9 @@ sudo /usr/local/bin/kubectl port-forward deployment/spring-geode-showcase 8080:8
 
 
 ------
+
+One new shell -> click (+) 
+
 ## Data Access
 
 ```shell script
@@ -95,7 +103,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 
 ```shell script
 k delete pod gemfire1-server-0
-k get pods
+watch kubectl get pods
 ```
 
 
@@ -139,13 +147,13 @@ create region --name=Account --type=PARTITION_PERSISTENT
 exit
 ```
 
-Null Value
+The following returns Null Value
 ```shell script
 curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 -H 'accept: */*'
 ```
 
-
+Save data
 ```shell script
 curl -X 'POST' \
 'http://localhost:8080/save' \
@@ -165,7 +173,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 
 ```shell script
 k delete pod gemfire1-server-0
-k get pods
+watch kubectl get pods
 ```
 
 Wait for gemfire1-server-0 in running stats
@@ -183,10 +191,11 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 
 ```shell
 cd ~/projects/gemfire/spring-geode-showcase
-k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/
-k get pods
+k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
+watch kubectl get pods
 ```
 
+Open new shell
 ```shell
 for i in $(seq 1 2000);
 do
@@ -196,34 +205,20 @@ sleep 1s
 done
 ```
 
-
-## Scale Locator
-
-
-k apply - f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-1data.yml
-
-```shell script
-curl -X 'DELETE' \
-  'http://localhost:8080/deleteById/1' \
-  -H 'accept: */*'
-  
-```
-
-In new shell
 ```shell
 k delete pod gemfire1-locator-0
+watch kubectl get pods
 ```
 
-
-Look for errors (if exists)
-
-Kill loop 
+Look for errors/Kill loop
 
 
 ## Scale Data
 
 ```shell
+cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
+watch kubectl get pods
 ```
 
 ```shell
@@ -261,14 +256,18 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
   -H 'accept: */*'
 ```
 
+Wait for recovery
+
+```shell
+watch kubectl get pods
+```
+
 ```shell
 kubectl delete pod gemfire1-server-1
 ```
 
-
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
-  -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'
 ```
 
 ```shell
@@ -284,12 +283,16 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 
 # Consistency Check
 
-
-Gfsh 
-
+Delete Cluster 
 
 ```shell
-kubectl exec -it gemfire1-locator-0 -- gfsh
+k delete GemFireCluster gemfire1
+watch kubectl get pods
+```
+
+Redeploy cluster with allow persistence transactions
+```shell
+k apply -f cloud/k8/data-services/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
 ```
 
 ```shell
@@ -304,9 +307,24 @@ mvn clean package spring-boot:build-image
 kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
 ```
 
+Deploy spring-geode-kotlin-transaction application
+
+
+```shell
+cd ~/projects/gemfire/spring-geode-showcase
+k apply -f cloud/k8/apps/transactions/app-transactions.yml
+watch kubectl get pods
+```
+```shell
+k port-forward deployment/spring-geode-kotlin-transaction 9090:8080
+```
+
+
+In another shell
+
 ```shell
 curl -X 'POST' \
-  'http://localhost:8080/save' \
+  'http://localhost:9090/save' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
