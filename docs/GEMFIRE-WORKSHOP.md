@@ -364,34 +364,23 @@ curl -X 'POST' \
 }'
 ````
 
+Should not see "invalid" data
+
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'
+```
+
+
 -----------------------
 
 # WAN Replication
 
-```shell
-k delete -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
-```
-
-Wait for pods to terminate
-```shell
-watch kubectl get pods
-```
-
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/03-WAN/gemfire1-2loc-3data.yml
+k apply -f cloud/k8/data-services/exercise-scalability/04-WAN/gemfire2-2loc-3data.yml
 ```
 
-Wait for pods to be ready
-```shell
-watch kubectl get pods
-```
-
-```shell
-k apply -f cloud/k8/data-services/exercise-scalability/03-WAN/gemfire2-2loc-3data.yml
-```
-
-Wait for pods to be ready
+Wait for pods (2 Locators gemfire2-locator(0-1) and 2 Data node gemfire2-server(0-2) to be ready
 ```shell
 watch kubectl get pods
 ```
@@ -409,18 +398,20 @@ kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=
 
 ```shell
 k apply -f cloud/k8/apps/wan/app-transactions-wan2.yml
+
 ```
 
+Wait for spring-geode-kotlin-transaction-wan2
+```shell
+watch kubectl get pods
+```
 
 ```shell
 k apply -f cloud/k8/apps/wan/app-wan2.yml
 ```
-```shell
-kubectl port-forward deployment/spring-geode-kotlin-transaction-wan2 9090:8080
-```
 
 ```shell
-kubectl port-forward deployment/spring-geode-showcase-wan2  9092:8080
+kubectl port-forward deployment/spring-geode-kotlin-transaction-wan2 9290:8080
 ```
 
 
@@ -428,7 +419,7 @@ kubectl port-forward deployment/spring-geode-showcase-wan2  9092:8080
 Empty
 
 ```shell script
-curl -X 'GET' 'http://localhost:9092/findById?s=ACCT-WAN' \
+curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' \
   -H 'accept: */*'
 ```
 
@@ -436,12 +427,21 @@ curl -X 'GET' 'http://localhost:9092/findById?s=ACCT-WAN' \
 
 ```shell script
 curl -X 'POST' \
-  'http://localhost:9092/save' \
+  'http://localhost:9290/save' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
-  -d '{
-  "id": "ACCT-WAN",
-  "name": "Acct ACCT-WAN"
+-d '{
+"account": {
+"id": "WAN",
+"name": "Account WAN"
+},
+"location": {
+"id": "WAN",
+"address": "123 WAN Street-WAN",
+"city": "NYC",
+"stateCode": "NY",
+"zipCode": "55555"
+}
 }'
 ```
 
