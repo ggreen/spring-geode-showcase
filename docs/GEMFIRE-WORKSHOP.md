@@ -293,6 +293,7 @@ watch kubectl get pods
 Redeploy cluster with allow persistence transactions
 ```shell
 k apply -f cloud/k8/data-services/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
+watch kubectl get pods
 ```
 
 ```shell
