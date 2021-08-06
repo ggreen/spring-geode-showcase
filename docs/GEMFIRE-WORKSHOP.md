@@ -297,21 +297,18 @@ watch kubectl get pods
 ```
 
 ```shell
+kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "destroy region --name=/Location"
 kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "destroy region --name=/Account"
 kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_PERSISTENT"
 kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create region --name=Location --type=PARTITION_PERSISTENT --colocated-with=/Account"
 ```
 
-```shell
-cd applications/spring-geode-kotlin-transaction/
-mvn clean package spring-boot:build-image
-kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
-```
-
 Deploy spring-geode-kotlin-transaction application
 
-
 ```shell
+cd ~/projects/gemfire/spring-geode-showcase/applications/spring-geode-kotlin-transaction/
+mvn clean package spring-boot:build-image
+kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
 cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/apps/transactions/app-transactions.yml
 watch kubectl get pods
@@ -343,9 +340,13 @@ curl -X 'POST' \
 }'
 ```
 
+```shell script
+curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'
+```
+
 ````shell
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:9090/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{

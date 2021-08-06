@@ -1,6 +1,6 @@
-package com.vmware.spring.geode.transaction.repository
+package com.vmware.spring.geode.showcase.repository
 
-import com.vmware.spring.geode.transaction.domain.Location
+import com.vmware.spring.geode.showcase.domain.Location
 import org.springframework.data.repository.CrudRepository
 
 /**

@@ -1,8 +1,8 @@
-package com.vmware.spring.geode.transaction.controller
+package com.vmware.spring.geode.showcase.controller
 
-import com.vmware.spring.geode.transaction.domain.AccountLocation
-import com.vmware.spring.geode.transaction.repository.AccountRepository
-import com.vmware.spring.geode.transaction.repository.LocationRepository
+import com.vmware.spring.geode.showcase.domain.AccountLocation
+import com.vmware.spring.geode.showcase.repository.AccountRepository
+import com.vmware.spring.geode.showcase.repository.LocationRepository
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

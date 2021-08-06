@@ -1,4 +1,4 @@
-package com.vmware.spring.geode.transaction
+package com.vmware.spring.geode.showcase
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,4 +1,4 @@
-package com.vmware.spring.geode.transaction;
+package com.vmware.spring.geode.showcase;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
