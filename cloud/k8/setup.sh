@@ -26,7 +26,7 @@ kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privilege
 
 
 # Install the GemFire Operator
-sleep 30
+sleep 40
 helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
 
@@ -35,4 +35,5 @@ cd ~/projects/gemfire/spring-geode-showcase
 
 git pull
 
+sleep 40
 kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
