@@ -32,8 +32,3 @@ helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --names
 
 # Create GemFire Cluster
 cd ~/projects/gemfire/spring-geode-showcase
-
-git pull
-
-sleep 40
-kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
