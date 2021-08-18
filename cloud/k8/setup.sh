@@ -26,7 +26,7 @@ kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privilege
 
 
 # Install the GemFire Operator
-
+sleep 30
 helm install gemfire-operator ~/data-services/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
 
