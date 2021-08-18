@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x #echo on
+
 cd ~
 kind create cluster  --config k8-1wnode.yaml
 
@@ -13,6 +16,7 @@ helm repo update
 helm install cert-manager jetstack/cert-manager --namespace cert-manager  --version v1.0.2 --set installCRDs=true
 
 kubectl create namespace gemfire-system
+
 
 kubectl create secret docker-registry image-pull-secret --namespace=gemfire-system --docker-server=registry.pivotal.io --docker-username=$HARBOR_USER --docker-password=$HARBOR_PASSWORD
 
