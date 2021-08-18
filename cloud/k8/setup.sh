@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd ~
 sudo kind create cluster  --config k8-1wnode.yaml
 
 sudo cp -r /root/.kube /$HOME/.kube
