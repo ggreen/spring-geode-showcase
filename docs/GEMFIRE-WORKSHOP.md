@@ -60,7 +60,7 @@ kubectl get pods
 ```
 
 
-sudo /usr/local/bin/kubectl port-forward deployment/spring-geode-showcase 8080:8080
+kubectl port-forward deployment/spring-geode-showcase 8080:8080
 
 
 ------
