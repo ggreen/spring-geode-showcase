@@ -26,10 +26,7 @@ curl -X 'POST' \
 'http://localhost:8080/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
--d '{
-"id": "1",
-"name": "Acct 1"
-}'  ; echo
+-d '{ "id": "1", "name": "Acct 1" }'  ; echo
 
 ## step 4 - read data
 
