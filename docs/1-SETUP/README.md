@@ -1,6 +1,6 @@
 # Download examples
-# See https://github.com/ggreen/spring-geode-showcase.git
-# ----------------------
+See [https://github.com/ggreen/spring-geode-showcase.git](https://github.com/ggreen/spring-geode-showcase.git)
+
 # Start lab
 
 ## step 1 - goto the root of the project directory
@@ -16,7 +16,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 git pull
 ```
 
-## step # - Start creation of local kubernetes environment in Kind
+## step 3 - Start creation of local kubernetes environment in Kind
 ## This takes several minutes
 
 ```shell script
