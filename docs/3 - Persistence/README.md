@@ -2,6 +2,7 @@
 # Create persistent region
 
 ## step 1 - start the GemFire command line
+
 kubectl exec -it gemfire1-locator-0 -- gfsh
 
 
@@ -15,8 +16,7 @@ exit
 
 ## step 3 - The account service will return a not-found empty null value
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*' ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*' ; echo
 
 
 ## step 4 - write data 
@@ -30,20 +30,21 @@ curl -X 'POST' \
 
 ## step 4 - read data
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 
 # -----------------------------------------------------
 # 
 ## step 1 - remote cache server
+
 k delete pod gemfire1-server-0
 
-# step 2 - Wait for gemfire1-server-0 to be in a running stats
+# step 2 - Wait for gemfire1-server-0 to be in a running stats (control^C to stop)
+
 watch kubectl get pods
 
 
 
 ## step 3 - read data - that will be reloaded from disk
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo

@@ -68,22 +68,18 @@ curl -X 'POST' \
 'http://localhost:8080/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
--d '{
-"id": "1",
-"name": "Acct 1"
-}'  ; echo
+-d '{ "id": "1", "name": "Acct 1" }'  ; echo
 
 ## step 6 - Read account data
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 
 # --------------------
 # K8 Auto Healing
 
 
-# step 1 - Delete/Kill the cache server data node
+# step 1 - Delete/Kill the cache server data node (may take several seconds)
 
 k delete pod gemfire1-server-0
 
@@ -96,8 +92,7 @@ watch kubectl get pods
 # It also did not have any redundant copies
 # Note: there will be an Error if this is executed before pod is recreated) or null once restarted
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 
 ## step 4 -  re-write data
@@ -106,13 +101,9 @@ curl -X 'POST' \
 'http://localhost:8080/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
--d '{
-"id": "1",
-"name": "Acct 1"
-}'  ; echo
+-d '{ "id": "1", "name": "Acct 1" }'  ; echo
 
 ## step 5 -  Read data
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 

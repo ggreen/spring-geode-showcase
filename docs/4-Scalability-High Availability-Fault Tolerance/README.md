@@ -9,7 +9,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 
 k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
 
-## step 3 - wait for the addition locator state to be ready and running
+## step 3 - wait for the addition locator state to be ready and running (control^C to stop)
 
 watch kubectl get pods
 
@@ -21,8 +21,7 @@ watch kubectl get pods
 
 for i in $(seq 1 2000);
 do
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1'  -H 'accept: */*'  ; echo
 sleep 1s
 done
 
@@ -78,16 +77,12 @@ curl -X 'POST' \
 'http://localhost:8080/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
--d '{
-"id": "1",
-"name": "Acct 1"
-}'  ; echo
+-d '{ "id": "1", "name": "Acct 1" }'  ; echo
 
 
 ## step 4 - Read data
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 
 # -------------------------------------------
@@ -99,8 +94,7 @@ k delete pod gemfire1-server-0
 
 ## step 2 - verify no data lost
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 ## step 3 - Wait killed data-node to recovery
 
@@ -120,5 +114,4 @@ kubectl delete pod gemfire1-server-2
 
 ## step 7 - verify no data lost
 
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
--H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo

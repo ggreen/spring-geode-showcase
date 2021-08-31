@@ -105,19 +105,7 @@ curl -X 'POST' \
 'http://localhost:9090/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
--d '{
-"account": {
-"id": "ACCT-C",
-"name": "Account C-invalid"
-},
-"location": {
-"id": "ACCT-C",
-"address": "123 ACCT-C Street-INVALID",
-"city": "NYC",
-"stateCode": "NY",
-"zipCode": "INVALID"
-}
-}'  ; echo
+-d '{ "account": { "id": "ACCT-C", "name": "Account C-invalid" }, "location": { "id": "ACCT-C", "address": "123 ACCT-C Street-INVALID","city": "NYC","stateCode": "NY","zipCode": "INVALID"} }'  ; echo
 
 
 # step 4 - Read data - Should not see "invalid" account data
