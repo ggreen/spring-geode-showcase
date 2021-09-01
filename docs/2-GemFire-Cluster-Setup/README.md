@@ -72,7 +72,7 @@ exit
 kubectl apply -f cloud/k8/apps
 ```
 
-## step 2 - use the watch command util the application spring-geode-showcase pod state is ready 
+## step 2 - use the watch command util the application spring-geode-showcase pod state is ready   (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -113,7 +113,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 k delete pod gemfire1-server-0
 ```
 
-## step 2 - watch the kubernetes platform recreate the deleted server
+## step 2 - watch the kubernetes platform recreate the deleted server (Control^C to stop)
 
 ```shell
 watch kubectl get pods

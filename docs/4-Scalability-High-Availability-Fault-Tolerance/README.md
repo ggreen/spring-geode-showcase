@@ -43,7 +43,7 @@ k delete pod gemfire1-locator-0
 ```
 
 # step 7 - Watch for locator to be recreated 
-# See the loop shell from step 5 (should not see any errors)
+See the loop shell from step 5 (should not see any errors)  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -126,7 +126,7 @@ k delete pod gemfire1-server-0
 curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 ```
 
-## step 3 - Wait killed data-node to recovery
+## step 3 - Wait killed data-node to recovery  (Control^C to stop)
 
 ```shell
 watch kubectl get pods

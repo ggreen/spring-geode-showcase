@@ -7,7 +7,7 @@ k apply -f cloud/k8/data-services/exercise-scalability/04-WAN/gemfire2-2loc-3dat
 ```
 
 
-## step 2 - step Wait for pods (2 Locators gemfire2-locator(0-1) and 2 Data node gemfire2-server(0-2) to be ready
+## step 2 - step Wait for pods (2 Locators gemfire2-locator(0-1) and 2 Data node gemfire2-server(0-2) to be ready  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -47,7 +47,7 @@ kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=
 k apply -f cloud/k8/apps/wan/app-transactions-wan2.yml
 ```
 
-## step 2 - Wait for spring-geode-kotlin-transaction-wan2 to be running
+## step 2 - Wait for spring-geode-kotlin-transaction-wan2 to be running  (Control^C to stop)
 
 ```shell
 watch kubectl get pods

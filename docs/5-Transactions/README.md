@@ -7,7 +7,7 @@ k delete GemFireCluster gemfire1
 ```
 
 
-## step 2 - wait for all gemfire members to be deleted
+## step 2 - wait for all gemfire members to be deleted  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -31,7 +31,7 @@ k apply -f cloud/k8/data-services/exercise-scalability/03-Transactions/gemfire1-
 ```
 
 
-## step 2 - wait for 2 locators and 3 data node gemfire members to be running
+## step 2 - wait for 2 locators and 3 data node gemfire members to be running  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -90,7 +90,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/apps/transactions/app-transactions.yml
 ```
 
-## step 6 - Wait for the application to be running
+## step 6 - Wait for the application to be running  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
