@@ -84,7 +84,7 @@ curl -X 'POST' \
 'http://localhost:9290/save' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
-'{ "account": { "id": "WAN", "name": "Account WAN" }, "location": { "id": "WAN", "address": "123 WAN Street-WAN", "city": "NYC", "stateCode": "NY","zipCode": "55555"} }'  ; echo
+-d '{ "account": { "id": "WAN", "name": "Account WAN" }, "location": { "id": "WAN", "address": "123 WAN Street-WAN", "city": "NYC", "stateCode": "NY","zipCode": "55555"} }'  ; echo
 ```
 
 ## step 3 - Read the WAN replicated data from cluster 1

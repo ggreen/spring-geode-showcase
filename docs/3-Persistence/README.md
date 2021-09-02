@@ -8,7 +8,7 @@ kubectl exec -it gemfire1-locator-0 -- gfsh
 ```
 
 
-## step 2 - Execute in gfsh to connect, delete previous region and create as persistent
+## step 2 - Execute in gfsh to connect, delete previous region and create as persistent (may take several seconds)
 
 ```shell
 connect
@@ -44,7 +44,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 
 ----------------------------------------------
 # Fault Tolerance with Persistent
-## step 1 - remote cache server
+## step 1 - delete cache server (may take several seconds)
 
 ```shell
 k delete pod gemfire1-server-0

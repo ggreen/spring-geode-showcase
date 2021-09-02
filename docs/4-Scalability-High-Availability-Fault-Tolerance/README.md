@@ -13,7 +13,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
 ```
 
-## step 3 - wait for the addition locator state to be ready and running (control^C to stop)
+## step 3 - wait for gemfire1-locator-1 state to be ready and running (control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -34,7 +34,7 @@ done
 
 
 
-# step 6 - Delete or kill the first locator 
+# step 6 - Delete or kill the first locator  (may take several seconds)
 
 Note: Click on a different shell (not the one executing the for loop)
 
@@ -42,7 +42,7 @@ Note: Click on a different shell (not the one executing the for loop)
 k delete pod gemfire1-locator-0
 ```
 
-# step 7 - Watch for locator to be recreated 
+# step 7 - Watch for locator to be recreated (control^C to stop)
 See the loop shell from step 5 (should not see any errors)  (Control^C to stop)
 
 ```shell
@@ -66,7 +66,7 @@ k apply -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire
 ```
 
 
-## step 3 - wait for the addition data node states to be ready and running
+## step 3 - wait for the addition gemfire1-server (1-2) states to be ready and running (control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -114,13 +114,13 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 -------------------------------------------
 # Verify In-Memory Fault tolerance
 
-## step 1 - delete/kill a cache server
+## step 1 - delete/kill a cache server (may take several seconds)
 
 ```shell
 k delete pod gemfire1-server-0
 ```
 
-## step 2 - verify no data lost
+## step 2 - verify no data lost (may take a couple of seconds while data re-balancing occurs)
 
 ```shell
 curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
@@ -132,25 +132,31 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
 watch kubectl get pods
 ```
 
-## step 4 - delete/kill another cache server
+## step 4 - delete/kill another cache server (may take several seconds)
 
 ```shell
 kubectl delete pod gemfire1-server-1
 ```
 
-## step 5 - verify no data lost
+## step 5 - verify no data lost (may take a couple of seconds while data re-balancing occurs)
 
 ```shell
 curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*' ; echo
 ```
 
-## step 6 - delete/kill another cache server
+## step 6 - Wait killed data-node to recovery  (Control^C to stop)
+
+```shell
+watch kubectl get pods
+```
+
+## step 7 - delete/kill another cache server (may take several seconds)
 
 ```shell
 kubectl delete pod gemfire1-server-2
 ```
 
-## step 7 - verify no data lost
+## step 8 - verify no data lost
 
 ```shell
 curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo

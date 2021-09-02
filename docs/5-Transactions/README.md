@@ -90,7 +90,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 k apply -f cloud/k8/apps/transactions/app-transactions.yml
 ```
 
-## step 6 - Wait for the application to be running  (Control^C to stop)
+## step 6 - Wait for spring-geode-kotlin-transaction application to be running  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
@@ -135,6 +135,7 @@ curl -X 'POST' \
 -d '{ "account": { "id": "ACCT-C", "name": "Account C-invalid" }, "location": { "id": "ACCT-C", "address": "123 ACCT-C Street-INVALID","city": "NYC","stateCode": "NY","zipCode": "INVALID"} }'  ; echo
 ```
 
+**Expected response:** "Internal Server Error"
 
 ## step 4 - Read data - Should not see "invalid" account data
 
