@@ -11,8 +11,9 @@
     <name>spring-geode-showcase-parent</name>
 
     <modules>
-	     <module>applications/spring-geode-showcase</module>
-         <module>applications/spring-geode-kotlin-transaction</module>
+        <module>components/account-domain</module>
+	     <module>applications/account-rest-service</module>
+         <module>applications/account-location-rest-service</module>
     </modules>
     <build>
         <pluginManagement>
