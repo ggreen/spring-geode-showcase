@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: geode-perf-test-put-01
+spec:
+  template:
+    spec:
+      containers:
+        - name: apache-geode-perf-test-put-01
+          image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          env:
+            - name: "JVM_ARGS"
+              value: "-Xms4g -Xmx4g -XX:+UseG1GC -XX:+PrintGCDetails -XX:MaxGCPauseMillis=10"
+            - name: spring.data.gemfire.pool.locators
+              valueFrom:
+                configMapKeyRef:
+                  name: gemfire1-config
+                  key: locators
+            - name: action
+              value: "putString"
+            - name: threadCount
+              value: "100"
+            - name: startKeyValue
+              value: "1"
+            - name: endKeyValue
+              value: "50000"
+            - name: threadSleepMs
+              value: "0"
+            - name: loopCount
+              value: "1000"
+            - name: capacity
+              value: "8000"
+            - name: regionName
+              value: "test"
+            - name: valueSize
+              value: "32"
+      restartPolicy: Never
+  backoffLimit: 4
