@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: geode-perf-test-put-01
+  name: geode-perf-test-put-03
 spec:
   template:
     spec:
@@ -20,7 +20,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "16"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -34,7 +34,7 @@ spec:
             - name: valueLength
               value: "32"
             - name: keyPrefix
-              value: "T1"
+              value: "T3-1"
         - name: apache-geode-perf-test-put-02
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
           imagePullPolicy: Always
@@ -49,7 +49,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "16"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -63,7 +63,7 @@ spec:
             - name: valueLength
               value: "32"
             - name: keyPrefix
-              value: "T2"
+              value: "T3-2"
         - name: apache-geode-perf-test-put-03
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
           imagePullPolicy: Always
@@ -78,7 +78,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "16"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -92,7 +92,7 @@ spec:
             - name: valueLength
               value: "32"
             - name: keyPrefix
-              value: "T3"
+              value: "T3-3"
         - name: apache-geode-perf-test-put-04
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
           imagePullPolicy: Always
@@ -107,7 +107,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "16"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -121,7 +121,7 @@ spec:
             - name: valueLength
               value: "32"
             - name: keyPrefix
-              value: "T4"
+              value: "T3-4"
         - name: apache-geode-perf-test-put-05
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
           imagePullPolicy: Always
@@ -136,7 +136,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "16"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -150,6 +150,6 @@ spec:
             - name: valueLength
               value: "32"
             - name: keyPrefix
-              value: "T5"
+              value: "T3-5"
       restartPolicy: Never
   backoffLimit: 4
