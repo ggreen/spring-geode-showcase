@@ -2,6 +2,7 @@ PRe-requisite
 
 
 ```shell
+cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 source cloud/GKE/local_setenv.sh
 ```
 
@@ -18,6 +19,8 @@ GEODE_HOME=/Users/devtools/repositories/IMDG/geode/apache-geode-1.13.1
 $GEODE_HOME/bin/gfsh -e "connect --user=admin --password=admin" -e "destroy region --name=/Location"
 
 $GEODE_HOME/bin/gfsh -e "connect --user=admin --password=admin" -e "destroy region --name=/Account"
+
+$GEODE_HOME/bin/gfsh -e "connect --user=admin --password=admin" -e "shutdown --include-locators=true"
 
 ```
 
@@ -37,17 +40,20 @@ k delete pvc data-gemfire1-locator-0 data-gemfire1-locator-1 data-gemfire1-serve
 ```shell
 cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 k create namespace perftest
-k apply -n perftest -f  cloud/k8/data-services/oltp/gemfire-g1.yml
 ```
 
 Check port-forward
 
 ```shell
-ps -ef | port-forward
+ps -ef | grep port-forward
 ```
 
+
+Create perf test cluster
 
 ```shell
 kubectl apply -f cloud/k8/data-services/oltp/gemfire-g1.yml -n perftest
 ```
+
+
 
