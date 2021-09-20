@@ -1,6 +1,7 @@
-```shell
+# ACID compliance, Reliability and Security
 
-```
+
+Start Local Cluster
 
 ```shell
 ./startLocator.sh
