@@ -75,3 +75,9 @@ List members
 ```shell
 ./listMemberStatus.sh 
 ```
+
+
+
+```shell
+k get pods -n perftest
+```

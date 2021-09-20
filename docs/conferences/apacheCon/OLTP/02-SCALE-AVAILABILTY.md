@@ -11,6 +11,10 @@ cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 kubectl apply -f cloud/k8/data-services/oltp/gemfire1-1loc-2data.yml
 ```
 
+```yaml
+https://onevmw-my.sharepoint.com/:p:/g/personal/gregoryg_vmware_com/EfJPkI-QBnNLlcV2SUqqqlgBceATgqUzvzTV-Yb2NeoQ2Q?e=hoZ8a2
+```
+
 
 Look for gemfire1-locator-0, gemfire1-server-0 gemfire1-server-1
 ```shell
