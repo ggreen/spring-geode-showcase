@@ -36,13 +36,16 @@ create region --name=Location --type=PARTITION_PERSISTENT --colocated-with=/Acco
 ```
 
 Start Account Location REST App
+
 ```shell
+cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 java -Dspring.profiles.active=local -jar applications/account-location-rest-service/target/account-location-rest-service-0.0.1-SNAPSHOT.jar
 ```
 
 Start Account REST App
 
 ```shell
+cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 java -Dspring.profiles.active=local -jar  applications/account-rest-service/target/account-rest-service-0.0.1-SNAPSHOT.jar
 ```
 
@@ -114,7 +117,7 @@ In gfsh
 ```shell
 disconnect
 connect --user=account
-query --query="select * from /Account"
+query --query="select * from /Account where name like 'Account%' "
 
 put --key=delete --value={id="delete",name="delete"} --region=/Account
 remove --key=delete --region=/Account
@@ -130,4 +133,9 @@ query --query="select * from /Location"
 Will not have WRITE access to Location region
 ```shell
 put --key=delete --value={id="delete"} --region=/Location
+```
+Will not have permission to shut down the cluster
+
+```shell
+shutdown
 ```
