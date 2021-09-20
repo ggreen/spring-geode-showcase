@@ -3,25 +3,14 @@ kind: GemFireCluster
 metadata:
   name: gemfire1
 spec:
-  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.0
+  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.1
   locators:
-    replicas: 1
-    resources:
-      requests:
-        memory: 2Gi
-        cpu: 2000m
-      limits:
-        memory: 2Gi
-        cpu: 2000m
+    replicas: 2
+    overrides:
+      gemfireProperties:
+        distributed-system-id: "1"
   servers:
-    replicas: 7
-    resources:
-      requests:
-        memory: 21Gi
-        cpu: 6000m
-      limits:
-        memory: 21Gi
-        cpu: 6000m
+    replicas: 2
     overrides:
       jvmOptions:
         - "-Djava.awt.headless=true"
@@ -29,10 +18,10 @@ spec:
         - "-XX:+UseG1GC"
         - "-XX:+PrintGCDetails"
         - "-XX:MaxGCPauseMillis=40"
-        - "-Xms19000m"
-        - "-Xmx19000m"
+        - "-Xms674m"
+        - "-Xmx674m"
         - "-Dgemfire.statistic-sample-rate=5000"
-        - "-Dgemfire.enable-timke-statistics=true"
+        - "-Dgemfire.enable-time-statistics=true"
         - "-Dgemfire.statistic-sampling-enabled=true"
         - "-Dgemfire.standard-output-always-on=true"
         - "-Dgemfire.archive-file-size-limit=10"
@@ -42,3 +31,6 @@ spec:
         - "-Dgemfire.archive-disk-space-limit=409"
         - "-Dgemfire.log-file-size-limit=100"
         - "-Dgemfire.locator-wait-time=120"
+        - "-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true"
+      gemfireProperties:
+        distributed-system-id: "1"

@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run:  account-location-rest-service
-  name:  account-location-rest-service
+    run:  account-location-rest-service-wan2
+  name:  account-location-rest-service-wan2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name:  account-location-rest-service
+      name:  account-location-rest-service-wan2
   template:
     metadata:
       labels:
-        name:  account-location-rest-service
+        name:  account-location-rest-service-wan2
     spec:
       containers:
         - env:
@@ -21,5 +21,5 @@ spec:
                 configMapKeyRef:
                   name: gemfire2-config
                   key: locators
-          image: nyla/account-location-rest-service :0.0.1-SNAPSHOT
+          image: nyla/account-location-rest-service:0.0.1-SNAPSHOT
           name: account-location-rest-service

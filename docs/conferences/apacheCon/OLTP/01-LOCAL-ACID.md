@@ -1,5 +1,5 @@
 ```shell
-cd /Users/devtools/repositories/IMDG/geode/apache-geode-devOps
+
 ```
 
 ```shell
@@ -117,11 +117,15 @@ In gfsh
 ```shell
 disconnect
 connect --user=account
+```
+
+In gfsh
+
+```shell
 query --query="select * from /Account where name like 'Account%' "
 
 put --key=delete --value={id="delete",name="delete"} --region=/Account
 remove --key=delete --region=/Account
-
 ```
 
 Will not have READ access to Location region

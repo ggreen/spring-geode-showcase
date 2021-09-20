@@ -1,12 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: geode-perf-test-put-01
+  name: geode-perf-test-get
 spec:
   template:
     spec:
       containers:
-        - name: apache-geode-perf-test-put-01
+        - name: apache-geode-perf-test-get
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
           imagePullPolicy: Always
           env:
@@ -18,22 +18,12 @@ spec:
                   name: gemfire1-config
                   key: locators
             - name: action
-              value: "putString"
-            - name: threadCount
-              value: "100"
-            - name: startKeyValue
-              value: "1"
-            - name: endKeyValue
-              value: "50000"
-            - name: threadSleepMs
-              value: "0"
+              value: "get"
             - name: loopCount
-              value: "1000"
+              value: "10000"
             - name: capacity
               value: "8000"
             - name: regionName
               value: "test"
-            - name: valueSize
-              value: "32"
       restartPolicy: Never
   backoffLimit: 4

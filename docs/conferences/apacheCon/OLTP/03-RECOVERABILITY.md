@@ -28,13 +28,13 @@ kubectl exec -it gemfire2-locator-0 -- gfsh -e connect  -e "create gateway-sende
 ## step 5 - Create Account region to use the Gateway sender from cluster 2 to cluster 1
 
 ```shell
-kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_PERSISTENT --gateway-sender-id=Account_Sender_to_1"
+kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_REDUNDANT_PERSISTENT --gateway-sender-id=Account_Sender_to_1"
 ```
 
 ## step 6 - Create Location region to use the Gateway sender from cluster 2 to cluster 1
 
 ```shell
-kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Location --type=PARTITION_PERSISTENT --colocated-with=/Account  --gateway-sender-id=Account_Sender_to_1"
+kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Location --type=PARTITION_REDUNDANT_PERSISTENT --colocated-with=/Account  --gateway-sender-id=Account_Sender_to_1"
 ```
 
 
@@ -73,7 +73,7 @@ kubectl port-forward deployment/account-location-rest-service-wan2 9290:8080
 Response should be Empty/null
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/ACCT-WAN' -H 'accept: */*'  ; echo
 ```
 
 
@@ -90,5 +90,5 @@ curl -X 'POST' \
 ## step 3 - Read the WAN replicated data from cluster 1
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=WAN' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/WAN' -H 'accept: */*'  ; echo
 ```

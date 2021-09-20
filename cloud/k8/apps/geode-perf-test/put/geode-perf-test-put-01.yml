@@ -78,7 +78,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "10"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -107,7 +107,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "10"
             - name: threadSleepMs
               value: "0"
             - name: loopCount
@@ -136,7 +136,7 @@ spec:
             - name: action
               value: "putStringThroughput"
             - name: threadCount
-              value: "8"
+              value: "10"
             - name: threadSleepMs
               value: "0"
             - name: loopCount

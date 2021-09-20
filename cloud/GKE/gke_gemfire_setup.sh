@@ -56,3 +56,7 @@ kubectl create rolebinding psp-gemfire --clusterrole=psp:vmware-system-privilege
 sleep 40
 helm install gemfire-operator $GEMFIRE_OPERATOR_DOWNLOAD_DIR/gemfire-operator-1.0.1.tgz --namespace gemfire-system
 
+
+kubectl create namespace perftest
+
+kubectl create secret docker-registry image-pull-secret --namespace=perftest --docker-server=registry.pivotal.io --docker-username=$HARBOR_USER --docker-password=$HARBOR_PASSWORD
