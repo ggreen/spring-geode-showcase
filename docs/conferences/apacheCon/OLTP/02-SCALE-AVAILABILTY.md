@@ -1,5 +1,5 @@
 
-# Create GemFire Cluster
+# SCALE and Availability
 
 ```shell
 cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase

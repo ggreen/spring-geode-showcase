@@ -1,4 +1,4 @@
-# Create Another GemFire Cluster with Cluster Gateway WAN replication
+# Recoverability
 
 ## - Apply configuration to create addition GemFire cluster
 
