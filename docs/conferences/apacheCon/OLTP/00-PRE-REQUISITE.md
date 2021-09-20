@@ -55,5 +55,23 @@ Create perf test cluster
 kubectl apply -f cloud/k8/data-services/oltp/gemfire-g1.yml -n perftest
 ```
 
+start local cluster
+```shell
+cd /Users/devtools/repositories/IMDG/geode/apache-geode-devOps
+```
 
+Start Local Cluster
 
+```shell
+./startLocator.sh
+```
+
+```shell
+./startDataNode.sh
+```
+
+List members
+
+```shell
+./listMemberStatus.sh 
+```

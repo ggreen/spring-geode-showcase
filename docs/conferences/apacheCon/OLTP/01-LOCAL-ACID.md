@@ -1,23 +1,9 @@
 # ACID compliance, Reliability and Security
 
 
-Start Local Cluster
 
 ```shell
-./startLocator.sh
-```
-
-```shell
-./startDataNode.sh
-```
-
-List members
-
-```shell
-./listMemberStatus.sh 
-```
-
-```shell
+cd /Users/devtools/repositories/IMDG/geode/apache-geode-devOps
 ./gfsh.sh
 ```
 
