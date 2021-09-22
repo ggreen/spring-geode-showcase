@@ -50,10 +50,6 @@ spec:
         distributed-system-id: "1"
 ```
 
-```yaml
-https://onevmw-my.sharepoint.com/:p:/g/personal/gregoryg_vmware_com/EfJPkI-QBnNLlcV2SUqqqlgBceATgqUzvzTV-Yb2NeoQ2Q?e=hoZ8a2
-```
-
 
 Look for gemfire1-locator-0, gemfire1-server-0 gemfire1-server-1
 ```shell
@@ -134,6 +130,45 @@ curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 k apply -f  cloud/k8/data-services/oltp/gemfire1-2loc-2server.yml
 ```
 
+```yaml
+apiVersion: gemfire.tanzu.vmware.com/v1
+kind: GemFireCluster
+metadata:
+  name: gemfire1
+spec:
+  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.1
+  locators:
+    replicas: 2
+    overrides:
+      gemfireProperties:
+        distributed-system-id: "1"
+  servers:
+    replicas: 2
+    overrides:
+      jvmOptions:
+        - "-Djava.awt.headless=true"
+        - "-Dsun.rmi.dgc.server.gcInterval=9223372036854775806"
+        - "-XX:+UseG1GC"
+        - "-XX:+PrintGCDetails"
+        - "-XX:MaxGCPauseMillis=40"
+        - "-Xms674m"
+        - "-Xmx674m"
+        - "-Dgemfire.statistic-sample-rate=5000"
+        - "-Dgemfire.enable-time-statistics=true"
+        - "-Dgemfire.statistic-sampling-enabled=true"
+        - "-Dgemfire.standard-output-always-on=true"
+        - "-Dgemfire.archive-file-size-limit=10"
+        - "-Dgemfire.conserve-sockets=false"
+        - "-Dgemfire.prometheus.metrics.port=4321"
+        - "-Dgemfire.log-disk-space-limit=409"
+        - "-Dgemfire.archive-disk-space-limit=409"
+        - "-Dgemfire.log-file-size-limit=100"
+        - "-Dgemfire.locator-wait-time=120"
+        - "-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true"
+      gemfireProperties:
+        distributed-system-id: "1"
+```
+
 ##  - wait for gemfire1-locator-1 state to be ready and running (control^C to stop)
 
 ```shell
@@ -173,6 +208,46 @@ cd /Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase
 ```shell
 k apply -f cloud/k8/data-services/oltp/gemfire1-2loc-3data.yml
 ```
+
+```yaml
+apiVersion: gemfire.tanzu.vmware.com/v1
+kind: GemFireCluster
+metadata:
+  name: gemfire1
+spec:
+  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.1
+  locators:
+    replicas: 2
+    overrides:
+      gemfireProperties:
+        distributed-system-id: "1"
+  servers:
+    replicas: 3
+    overrides:
+      jvmOptions:
+        - "-Djava.awt.headless=true"
+        - "-Dsun.rmi.dgc.server.gcInterval=9223372036854775806"
+        - "-XX:+UseG1GC"
+        - "-XX:+PrintGCDetails"
+        - "-XX:MaxGCPauseMillis=40"
+        - "-Xms674m"
+        - "-Xmx674m"
+        - "-Dgemfire.statistic-sample-rate=5000"
+        - "-Dgemfire.enable-time-statistics=true"
+        - "-Dgemfire.statistic-sampling-enabled=true"
+        - "-Dgemfire.standard-output-always-on=true"
+        - "-Dgemfire.archive-file-size-limit=10"
+        - "-Dgemfire.conserve-sockets=false"
+        - "-Dgemfire.prometheus.metrics.port=4321"
+        - "-Dgemfire.log-disk-space-limit=409"
+        - "-Dgemfire.archive-disk-space-limit=409"
+        - "-Dgemfire.log-file-size-limit=100"
+        - "-Dgemfire.locator-wait-time=120"
+        - "-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true"
+      gemfireProperties:
+        distributed-system-id: "1"
+```
+
 ##  wait for the addition gemfire1-server (1-2) states to be ready and running (control^C to stop)
 
 ```shell
