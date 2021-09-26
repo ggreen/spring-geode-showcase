@@ -1,0 +1,11 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping  schema="spring_showcase">
+    <class name="com.vmware.spring.geode.showcase.account.domain.account.Account" table="ACCOUNTS">
+        <id name="id" type="string" column="account_id">
+        </id>
+        <property name="name" column="account_nm" type="string"/>
+    </class>
+</hibernate-mapping>
