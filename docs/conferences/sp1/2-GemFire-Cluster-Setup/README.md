@@ -10,7 +10,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 ## step 2 - Create a GemFire Cluster (1 Locator 1 Data Node)
 
 ```shell
-kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
+kubectl apply -f cloud/k8/data-services/sp1/exercise1/gemfire1.yml
 ```
 
 --------------------------

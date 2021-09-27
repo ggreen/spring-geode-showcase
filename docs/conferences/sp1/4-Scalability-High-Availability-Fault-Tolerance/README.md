@@ -10,7 +10,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 ## step 2 - apply configuration to add one additional locator
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
 ```
 
 ## step 3 - wait for gemfire1-locator-1 state to be ready and running (control^C to stop)
@@ -62,7 +62,7 @@ cd ~/projects/gemfire/spring-geode-showcase
 ## step 2 - apply configuration to add two additional data node/cache server
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
 ```
 
 

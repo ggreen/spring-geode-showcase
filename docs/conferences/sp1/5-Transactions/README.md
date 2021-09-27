@@ -27,7 +27,7 @@ k delete pvc data-gemfire1-locator-0 data-gemfire1-locator-1  data-gemfire1-serv
 ## step 1 - Create GemFire cluster with addition properties such as -Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
 ```
 
 

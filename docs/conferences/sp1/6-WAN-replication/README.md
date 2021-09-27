@@ -3,7 +3,7 @@
 ## step 1 - Apply configuration to create addition GemFire cluster
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/04-WAN/gemfire2-2loc-3data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/04-WAN/gemfire2-2loc-3data.yml
 ```
 
 

@@ -14,7 +14,7 @@ git pull
 
 # Cluster Setup
 
-kubectl apply -f cloud/k8/data-services/exercise1/gemfire1.yml
+kubectl apply -f cloud/k8/data-services/sp1/exercise1/gemfire1.yml
 
 ---
 
@@ -184,7 +184,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' \
 ```shell
 cd ~/projects/gemfire/spring-geode-showcase
 
-k apply -f cloud/k8/data-services/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/01-locator-scale/gemfire1-2loc-1data.yml
 
 watch kubectl get pods
 ```
@@ -213,7 +213,7 @@ Look for errors/Kill loop
 ```shell
 cd ~/projects/gemfire/spring-geode-showcase
 
-k apply -f cloud/k8/data-services/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/02-datanode-scale/gemfire1-2loc-3data.yml
 
 watch kubectl get pods
 ```
@@ -293,7 +293,7 @@ watch kubectl get pods
 
 Redeploy cluster with allow persistence transactions
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/03-Transactions/gemfire1-2loc-3data-allow-persistence-transactions.yml
 
 watch kubectl get pods
 ```
@@ -387,7 +387,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'
 
 
 ```shell
-k apply -f cloud/k8/data-services/exercise-scalability/04-WAN/gemfire2-2loc-3data.yml
+k apply -f cloud/k8/data-services/sp1/exercise-scalability/04-WAN/gemfire2-2loc-3data.yml
 ```
 
 Wait for pods (2 Locators gemfire2-locator(0-1) and 2 Data node gemfire2-server(0-2) to be ready

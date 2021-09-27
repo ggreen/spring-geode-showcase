@@ -1,6 +1,7 @@
 package com.vmware.spring.geode.showcase.account.repository
 
 import com.vmware.spring.geode.showcase.account.domain.account.Account
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.PreparedStatementSetter
 import org.springframework.jdbc.core.RowMapper
@@ -51,14 +52,23 @@ class AccountJdbcRepository(private val jdbcTemplate: JdbcTemplate) : AccountRep
             Account(rs.getString(1), rs.getString(2))
         }
 
-        var account : Account? = jdbcTemplate.queryForObject("select acct_id as id, acct_nm as name from ACCOUNTS where acct_id = ?",
-            rowMapper,
-            id
-        )
+        try
+        {
 
-        if(account == null)
+            var account : Account? = jdbcTemplate.queryForObject("select acct_id as id, acct_nm as name from ACCOUNTS where acct_id = ?",
+                rowMapper,
+                id
+            )
+
+            if(account == null)
+                return Optional.empty()
+
+            return Optional.of(account)
+        }
+        catch( e : EmptyResultDataAccessException)
+        {
             return Optional.empty()
+        }
 
-        return Optional.of(account)
     }
 }

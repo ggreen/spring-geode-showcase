@@ -1,30 +1,29 @@
-package com.vmware.spring.geode.showcase.account.controller
+package com.vmware.spring.geode.showcase.account.service
 
 import com.vmware.spring.geode.showcase.account.domain.account.Account
 import com.vmware.spring.geode.showcase.account.repository.AccountRepository
-import com.vmware.spring.geode.showcase.account.service.AccountService
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
-import org.springframework.http.ResponseEntity
 import java.util.*
 
-internal class AccountControllerTest{
+internal class AccountDataServiceTest{
     private val account: Account = JavaBeanGeneratorCreator.of(Account::class.java).create()
-    private lateinit var accountRepository: AccountService
-    private lateinit var subject : AccountController
+    private lateinit var accountRepository: AccountRepository
+    private lateinit var subject : AccountDataService
 
     @BeforeEach
     internal fun setUp() {
-        accountRepository = mock<AccountService>(){
-            on{ findByAccountId(any<String>())} doReturn account
+        accountRepository = mock<AccountRepository>(){
+            on{ findById(any<String>())} doReturn Optional.of(account)
         }
-        subject = AccountController(accountRepository)
+        subject = AccountDataService(accountRepository)
     }
 
     @Test
@@ -35,18 +34,19 @@ internal class AccountControllerTest{
 
     @Test
     internal fun findAccount() {
-        assertEquals(ResponseEntity.ok(account),subject.findByAccountId(account.id));
+        assertEquals(account,subject.findByAccountId(account.id));
     }
+
 
     @Test
     internal fun findAccountNotFound_WhenEmpty() {
 
-        accountRepository = mock<AccountService>(){
-            on{ findByAccountId(any<String>())} doReturn null
+        accountRepository = mock<AccountRepository>(){
+            on{ findById(any<String>())} doReturn Optional.empty()
         }
-        subject = AccountController(accountRepository)
+        subject = AccountDataService(accountRepository)
 
-        assertEquals(ResponseEntity.notFound().build<Account>(),subject.findByAccountId("doesNotExist"));
+        assertNull(subject.findByAccountId("doesNotExist"));
 
     }
 }
