@@ -12,6 +12,7 @@
 
     <modules>
         <module>components/account-domain</module>
+        <module>components/account-functions</module>
 	     <module>applications/account-rest-service</module>
          <module>applications/account-location-rest-service</module>
         <module>applications/account-jdbc-caching-rest-service</module>

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service
  * @author Gregory Green
  */
 @Service
-class AccountDataService (private val accountRepository : AccountRepository) : AccountService {
-
+class AccountDataService (private val accountRepository : AccountRepository)
+    : AccountService {
     @CacheEvict(value = ["AccountCache"], key = "#account.id")
     override fun save(account: Account): Account {
         return accountRepository.save(account)
@@ -27,3 +27,4 @@ class AccountDataService (private val accountRepository : AccountRepository) : A
         return optional.get()
     }
 }
+
