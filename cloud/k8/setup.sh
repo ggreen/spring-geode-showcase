@@ -50,7 +50,7 @@ kubectl create secret docker-registry regsecret --docker-server=https://registry
 helm install --wait postgres-operator /tmp/postgres-operator/
 sleep 30s
 
-cd ~/projects/rabbitmq/tanzu-rabbitmq-event-streaming-showcase/
+cd  ~/projects/gemfire/spring-geode-showcase/
 kubectl apply -f cloud/k8/data-services/postgres
 sleep 2m
 
