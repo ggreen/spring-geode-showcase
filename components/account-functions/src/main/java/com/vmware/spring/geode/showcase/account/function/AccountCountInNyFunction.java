@@ -8,7 +8,6 @@ import org.apache.geode.cache.query.*;
 import org.apache.geode.pdx.PdxInstance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.Collection;
 import java.util.Properties;
 
@@ -18,17 +17,6 @@ public class AccountCountInNyFunction implements Function<PdxInstance>, Declarab
     private static final String empty ="";
     private Cache cache;
     private QueryService queryService;
-
-    public void initialize(Cache cache, Properties properties) {
-     this.cache = cache;
-     this.queryService = cache.getQueryService();
-    }
-
-    @Override
-    public String getId()
-    {
-        return getClass().getSimpleName();
-    }
 
     @Override
     public void execute(FunctionContext<PdxInstance> functionContext)
@@ -47,7 +35,8 @@ public class AccountCountInNyFunction implements Function<PdxInstance>, Declarab
         if(queryService == null)
             queryService = CacheFactory.getAnyInstance().getQueryService();
 
-        Query query = queryService.newQuery("select count(*) as cnt from /Account a, /Location l where a.id = l.id and l.stateCode = 'NY'");
+        Query query = queryService.newQuery(
+        "select count(*) as cnt from /Account a, /Location l where a.id = l.id and l.stateCode = 'NY'");
 
         try {
 
@@ -67,4 +56,16 @@ public class AccountCountInNyFunction implements Function<PdxInstance>, Declarab
             throw new FunctionException("Cannot execute query error:"+e.getMessage());
         }
     }
+
+    public void initialize(Cache cache, Properties properties) {
+        this.cache = cache;
+        this.queryService = cache.getQueryService();
+    }
+
+    @Override
+    public String getId()
+    {
+        return getClass().getSimpleName();
+    }
+
 }
