@@ -17,7 +17,6 @@ internal class AccountJdbcRepositoryTest{
     private lateinit var jdbcTemplate: JdbcTemplate
     private lateinit var subject : AccountJdbcRepository
 
-
     @BeforeEach
     internal fun setUp() {
         jdbcTemplate = mock<JdbcTemplate>()
