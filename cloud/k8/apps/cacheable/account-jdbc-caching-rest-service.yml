@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run:  account-jdbc-caching-rest-service
+  name:  account-jdbc-caching-rest-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name:  account-jdbc-caching-rest-service
+  template:
+    metadata:
+      labels:
+        name:  account-jdbc-caching-rest-service
+    spec:
+      containers:
+        - env:
+            - name: spring.datasource.username
+              value: "postgres"
+            - name: spring.datasource.password
+              value: "CHANGEME"
+            - name: spring.datasource.url
+              value: "jdbc:postgresql://postgres/postgres"
+            - name: server.port
+              value: "8080"
+            - name: spring.data.gemfire.pool.locators
+              valueFrom:
+                configMapKeyRef:
+                  name: gemfire1-config
+                  key: locators
+          image: account-jdbc-caching-rest-service:0.0.1-SNAPSHOT
+          name: account-jdbc-caching-rest-service
