@@ -27,7 +27,7 @@ watch kubectl get pods
 ```shell
 for i in $(seq 1 2000);
 do
-curl -X 'GET' 'http://localhost:8080/findById?s=1'  -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1'  -H 'accept: */*'  ; echo
 sleep 1s
 done
 ```
@@ -97,7 +97,7 @@ exit
 
 ```shell
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "id": "1", "name": "Acct 1" }'  ; echo
@@ -107,7 +107,7 @@ curl -X 'POST' \
 ## step 4 - Read data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 
 
@@ -123,7 +123,7 @@ k delete pod gemfire1-server-0
 ## step 2 - verify no data lost (may take a couple of seconds while data re-balancing occurs)
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 
 ## step 3 - Wait killed data-node to recovery  (Control^C to stop)
@@ -141,7 +141,7 @@ kubectl delete pod gemfire1-server-1
 ## step 5 - verify no data lost (may take a couple of seconds while data re-balancing occurs)
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*' ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*' ; echo
 ```
 
 ## step 6 - Wait killed data-node to recovery  (Control^C to stop)
@@ -159,5 +159,5 @@ kubectl delete pod gemfire1-server-2
 ## step 8 - verify no data lost
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```

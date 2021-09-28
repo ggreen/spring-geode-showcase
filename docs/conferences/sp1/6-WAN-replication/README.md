@@ -73,7 +73,7 @@ kubectl port-forward deployment/spring-geode-kotlin-transaction-wan2 9290:8080
 Response should be Empty/null
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accountsACCT-WAN' -H 'accept: */*'  ; echo
 ```
 
 
@@ -81,7 +81,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' -H 'accept: */*'  ; ec
 
 ```shell
 curl -X 'POST' \
-'http://localhost:9290/save' \
+'http://localhost:9290/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "account": { "id": "WAN", "name": "Account WAN" }, "location": { "id": "WAN", "address": "123 WAN Street-WAN", "city": "NYC", "stateCode": "NY","zipCode": "55555"} }'  ; echo
@@ -90,5 +90,5 @@ curl -X 'POST' \
 ## step 3 - Read the WAN replicated data from cluster 1
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=WAN' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accountsWAN' -H 'accept: */*'  ; echo
 ```

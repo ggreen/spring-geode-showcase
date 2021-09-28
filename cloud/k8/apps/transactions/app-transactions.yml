@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run:  spring-geode-kotlin-transaction
-  name:  spring-geode-kotlin-transaction
+    run:  account-location-rest-service
+  name:  account-location-rest-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name:  spring-geode-kotlin-transaction
+      name:  account-location-rest-service
   template:
     metadata:
       labels:
-        name:  spring-geode-kotlin-transaction
+        name:  account-location-rest-service
     spec:
       containers:
         - env:
@@ -21,5 +21,5 @@ spec:
                 configMapKeyRef:
                   name: gemfire1-config
                   key: locators
-          image: spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
-          name: spring-geode-kotlin-transaction
+          image: account-location-rest-service:0.0.1-SNAPSHOT
+          name: account-location-rest-service

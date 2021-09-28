@@ -21,7 +21,7 @@ exit
 ## step 3 - The account service will return a not-found empty null value
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*' ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*' ; echo
 ```
 
 
@@ -29,7 +29,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*' ; echo
 
 ```shell
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "id": "1", "name": "Acct 1" }'  ; echo
@@ -38,7 +38,7 @@ curl -X 'POST' \
 ## step 4 - read data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 
 
@@ -61,5 +61,5 @@ watch kubectl get pods
 ## step 3 - read data - that will be reloaded from disk
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```

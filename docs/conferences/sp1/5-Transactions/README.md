@@ -75,7 +75,7 @@ mvn clean package spring-boot:build-image
 ## step 3 - Make the spring-geode-kotlin-transaction image available to kind
 
 ```shell
-kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
+kind load docker-image account-location-rest-service:0.0.1-SNAPSHOT
 ```
 
 ## step 4 - Change to the root project directory
@@ -84,22 +84,22 @@ kind load docker-image spring-geode-kotlin-transaction:0.0.1-SNAPSHOT
 cd ~/projects/gemfire/spring-geode-showcase
 ```
 
-## step 5 - deploy the spring-geode-kotlin-transaction in the local kubernetes cluster
+## step 5 - deploy the account-location-rest-service in the local kubernetes cluster
 
 ```shell
 k apply -f cloud/k8/apps/transactions/app-transactions.yml
 ```
 
-## step 6 - Wait for spring-geode-kotlin-transaction application to be running  (Control^C to stop)
+## step 6 - Wait for account-location-rest-service application to be running  (Control^C to stop)
 
 ```shell
 watch kubectl get pods
 ```
 
-## step 7 - expose listening port of the spring-geode-kotlin-transaction app
+## step 7 - expose listening port of the account-location-rest-service app
 
 ```shell
-k port-forward deployment/spring-geode-kotlin-transaction 9090:8080
+k port-forward deployment/account-location-rest-service 9090:8080
 ```
 
 
@@ -111,7 +111,7 @@ k port-forward deployment/spring-geode-kotlin-transaction 9090:8080
 ```shell
 
 curl -X 'POST' \
-'http://localhost:9090/save' \
+'http://localhost:9090/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "account": { "id": "ACCT-C", "name": "Account C" }, "location": { "id": "ACCT-C", "address": "123 ACCT-C Street", "city": "NYC", "stateCode": "NY", "zipCode": "02323" } }' ; echo
@@ -121,7 +121,7 @@ curl -X 'POST' \
 ## step 2 - Read account data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*' ; echo
+curl -X 'GET' 'http://localhost:8080/accountsACCT-C' -H 'accept: */*' ; echo
 ```
 
 
@@ -129,7 +129,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*' ; echo
 
 ```shell
 curl -X 'POST' \
-'http://localhost:9090/save' \
+'http://localhost:9090/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "account": { "id": "ACCT-C", "name": "Account C-invalid" }, "location": { "id": "ACCT-C", "address": "123 ACCT-C Street-INVALID","city": "NYC","stateCode": "NY","zipCode": "INVALID"} }'  ; echo
@@ -140,5 +140,5 @@ curl -X 'POST' \
 ## step 4 - Read data - Should not see "invalid" account data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accountsACCT-C' -H 'accept: */*'  ; echo
 ```

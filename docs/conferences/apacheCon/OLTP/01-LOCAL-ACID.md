@@ -39,7 +39,7 @@ java -Dspring.profiles.active=local -jar  applications/account-rest-service/targ
 Save Account and Location with a committed transaction
 ```shell
 curl -X 'POST' \
-  'http://localhost:8081/save' \
+  'http://localhost:8081/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -71,7 +71,7 @@ Expected Internal Server Error with a transaction Rollback
 
 ```shell
 curl -X 'POST' \
-  'http://localhost:8081/save' \
+  'http://localhost:8081/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{

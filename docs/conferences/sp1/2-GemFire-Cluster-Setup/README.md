@@ -19,7 +19,7 @@ kubectl apply -f cloud/k8/data-services/sp1/exercise1/gemfire1.yml
 ## step 1 - change directory to build the first Java application 
 
 ```shell
-cd ~/projects/gemfire/spring-geode-showcase/applications/spring-geode-showcase/
+cd ~/projects/gemfire/spring-geode-showcase/applications/account-rest-service
 ```
 
 ## step 2 build the docker image spring-geode-showcase:0.0.1-SNAPSHOT
@@ -90,7 +90,7 @@ kubectl port-forward deployment/spring-geode-showcase 8080:8080
 
 ```shell
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "id": "1", "name": "Acct 1" }'  ; echo
@@ -100,7 +100,7 @@ curl -X 'POST' \
 ## step 6 - Read account data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 
 
@@ -126,14 +126,14 @@ It also did not have any redundant copies
 Note: there will be an Error if this is executed before pod is recreated) or null once restarted
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 
 ## step 4 -  re-write data
 
 ```shell
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{ "id": "1", "name": "Acct 1" }'  ; echo
@@ -142,6 +142,6 @@ curl -X 'POST' \
 ## step 5 -  Read data
 
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'  ; echo
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo
 ```
 

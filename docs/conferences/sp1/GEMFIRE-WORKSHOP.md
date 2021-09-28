@@ -71,7 +71,7 @@ One new shell -> click (+)
 
 ```shell script
 curl -X 'POST' \
-  'http://localhost:8080/save' \
+  'http://localhost:8080/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -82,7 +82,7 @@ curl -X 'POST' \
 
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
   -H 'accept: */*'
 ```
 
@@ -98,7 +98,7 @@ watch kubectl get pods
 
 Error (before pod is recreated) or null once restarted
 ```shell
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 ```
 
@@ -106,7 +106,7 @@ Repost data
 
 ```shell script
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -116,7 +116,7 @@ curl -X 'POST' \
 ```
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 
 ```
@@ -141,14 +141,14 @@ exit
 
 The following returns Null Value
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 ```
 
 Save data
 ```shell script
 curl -X 'POST' \
-'http://localhost:8080/save' \
+'http://localhost:8080/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -158,7 +158,7 @@ curl -X 'POST' \
 ```
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 ```
 
@@ -171,7 +171,7 @@ watch kubectl get pods
 Wait for gemfire1-server-0 in running stats
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 ```
 
@@ -193,7 +193,7 @@ Open new shell
 ```shell
 for i in $(seq 1 2000);
 do
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
 -H 'accept: */*'
 sleep 1s
 done
@@ -234,7 +234,7 @@ exit
 
 ```shell script
 curl -X 'POST' \
-  'http://localhost:8080/save' \
+  'http://localhost:8080/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -245,14 +245,14 @@ curl -X 'POST' \
 
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
   -H 'accept: */*'
 ```
 
 k delete pod gemfire1-server-0
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
   -H 'accept: */*'
 ```
 
@@ -267,7 +267,7 @@ kubectl delete pod gemfire1-server-1
 ```
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'
 ```
 
 ```shell
@@ -275,7 +275,7 @@ kubectl delete pod gemfire1-server-2
 ```
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=1' \
+curl -X 'GET' 'http://localhost:8080/accounts/1' \
   -H 'accept: */*'
 ```
 
@@ -332,7 +332,7 @@ In another shell
 
 ```shell
 curl -X 'POST' \
-  'http://localhost:9090/save' \
+  'http://localhost:9090/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -351,12 +351,12 @@ curl -X 'POST' \
 ```
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/accountsACCT-C' -H 'accept: */*'
 ```
 
 ````shell
 curl -X 'POST' \
-'http://localhost:9090/save' \
+'http://localhost:9090/accounts' \
 -H 'accept: */*' \
 -H 'Content-Type: application/json' \
 -d '{
@@ -377,7 +377,7 @@ curl -X 'POST' \
 Should not see "invalid" data
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-C' -H 'accept: */*'
+curl -X 'GET' 'http://localhost:8080/accountsACCT-C' -H 'accept: */*'
 ```
 
 
@@ -431,7 +431,7 @@ kubectl port-forward deployment/spring-geode-kotlin-transaction-wan2 9290:8080
 Empty
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' \
+curl -X 'GET' 'http://localhost:8080/accountsACCT-WAN' \
   -H 'accept: */*'
 ```
 
@@ -439,7 +439,7 @@ curl -X 'GET' 'http://localhost:8080/findById?s=ACCT-WAN' \
 
 ```shell script
 curl -X 'POST' \
-  'http://localhost:9290/save' \
+  'http://localhost:9290/accounts' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
 -d '{
@@ -459,6 +459,6 @@ curl -X 'POST' \
 
 
 ```shell script
-curl -X 'GET' 'http://localhost:8080/findById?s=WAN' \
+curl -X 'GET' 'http://localhost:8080/accountsWAN' \
   -H 'accept: */*'
 ```
