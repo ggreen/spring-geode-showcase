@@ -78,3 +78,8 @@ curl -X 'POST' \
 ```shell
 curl -X 'GET' 'http://localhost:9020/accounts/1' -H 'accept: */*'  ; echo
 ```
+
+
+```shell
+k logs -f deployment/account-jdbc-caching-rest-service
+```
