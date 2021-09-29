@@ -18,20 +18,19 @@ kubectl apply -f cloud/k8/data-services/sp1/exercise1/gemfire1.yml
 
 ## step 1 - change directory to build the first Java application 
 
+
+## step 2 build the docker image account-rest-service:0.0.1-SNAPSHOT
+
 ```shell
+mvn install
 cd ~/projects/gemfire/spring-geode-showcase/applications/account-rest-service
-```
-
-## step 2 build the docker image spring-geode-showcase:0.0.1-SNAPSHOT
-
-```shell
 mvn spring-boot:build-image
 ```
 
 ## step 3 Make the docker image available to the local Kind Kubernetes cluster
 
 ```shell
-kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
+kind load docker-image account-rest-service:0.0.1-SNAPSHOT
 ```
 
 --------------------------
@@ -69,6 +68,7 @@ exit
 ## step 1 - Deploy the definitions located in cloud/k8/apps/app.yml
 
 ```shell
+cd ~/projects/gemfire/spring-geode-showcase/
 kubectl apply -f cloud/k8/apps
 ```
 
@@ -81,7 +81,7 @@ watch kubectl get pods
 ## step 3 - Expose the spring-geode-showcase to be accessed using port 8080
 
 ```shell
-kubectl port-forward deployment/spring-geode-showcase 8080:8080
+kubectl port-forward deployment/account-rest-service 8080:8080
 ```
 
 ## step 4 - Open a new shell -> click (+)

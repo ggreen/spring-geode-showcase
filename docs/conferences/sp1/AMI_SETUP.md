@@ -134,7 +134,7 @@ cd applications/spring-geode-showcase/
 mvn spring-boot:build-image
 
 
-kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
+kind load docker-image account-rest-service:0.0.1-SNAPSHOT
 cd ../..
 kubectl apply -f cloud/k8/config-maps.yml
 

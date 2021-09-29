@@ -10,7 +10,7 @@
 cd ~/projects/gemfire/spring-geode-showcase/applications/spring-geode-showcase/
 ```
 
-## step 2 build the docker image spring-geode-showcase:0.0.1-SNAPSHOT
+## step 2 build the docker image account-rest-service:0.0.1-SNAPSHOT
 
 ```shell
 mvn -pl components/account-domain install

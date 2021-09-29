@@ -27,7 +27,7 @@ cd ~/projects/gemfire/spring-geode-showcase/applications/spring-geode-showcase/
 
 mvn spring-boot:build-image
 
-kind load docker-image spring-geode-showcase:0.0.1-SNAPSHOT
+kind load docker-image account-rest-service:0.0.1-SNAPSHOT
 ```
 
 ## Deploy application
@@ -60,7 +60,7 @@ kubectl get pods
 ```
 
 
-kubectl port-forward deployment/spring-geode-showcase 8080:8080
+kubectl port-forward deployment/account-rest-service 8080:8080
 
 
 ------
