@@ -17,6 +17,7 @@
          <module>applications/account-location-rest-service</module>
         <module>applications/account-jdbc-caching-rest-service</module>
         <module>applications/account-location-event-service</module>
+        <module>applications/gateway-load-balancer-service</module>
     </modules>
     <build>
         <pluginManagement>
