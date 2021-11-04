@@ -1,8 +1,13 @@
+# PERL Apache Geode/GemFire example
+
+This application is a simple example of connecting to
+an [Apache Geode](https://geode.apache.org/)/[GemFire](https://tanzu.vmware.com/gemfire)
+NoSQL in-memory data platform with the Perl
+programming language using the HTTP REST API.
+
 # Setup
 
-
 - [Download GemFire](https://network.pivotal.io/products/pivotal-gemfire)
-
 
 
 ```shell
