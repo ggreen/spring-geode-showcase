@@ -20,7 +20,7 @@ cd $GEMFIRE_HOME/bin
 Start Gfsh
 
 ```shell
-gfsh
+./gfsh
 ```
 
 In Gfsh
