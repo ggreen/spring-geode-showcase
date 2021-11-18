@@ -46,3 +46,11 @@ Export output
 ```
 Hello world 
 ```
+
+
+## Experiment Redis API Notes
+
+- Redis adapter uses a Partition region
+- Data persistent is not currently supported
+- Apache Geode 1.14 has one redundant copy of data 
+- Apache Geode 1.15 supports a configurable redundant copies (between 0-3).  
