@@ -117,7 +117,7 @@ watch kubectl get pods
 ```
 
 
-##  - Try to Read account, it will be empty because the data is persisted 
+##  - Try to Read account, it will be empty because the data is not persisted 
 
 ```shell
 curl -X 'GET' 'http://localhost:8080/accounts/1' -H 'accept: */*'  ; echo

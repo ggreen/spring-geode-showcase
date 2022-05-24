@@ -81,10 +81,10 @@ curl -X 'GET' 'http://localhost:8080/accounts/ACCT-WAN' -H 'accept: */*'  ; echo
 
 ```shell
 curl -X 'POST' \
-'http://localhost:9290/accounts' \
--H 'accept: */*' \
--H 'Content-Type: application/json' \
--d '{ "account": { "id": "WAN", "name": "Account WAN" }, "location": { "id": "WAN", "address": "123 WAN Street-WAN", "city": "NYC", "stateCode": "NY","zipCode": "55555"} }'  ; echo
+  'http://localhost:9290/save' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{ "account": { "id": "WAN", "name": "Account WAN" }, "location": { "id": "WAN", "address": "123 WAN Street-WAN", "city": "NYC", "stateCode": "NY","zipCode": "55555"} }' ; echo
 ```
 
 ## - Read the WAN replicated data from cluster 1

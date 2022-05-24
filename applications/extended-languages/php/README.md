@@ -39,6 +39,7 @@ start server --name=server1 --locators=localhost[10334] --J=-XX:+UseG1GC  --J=-X
 
 
 ```shell
+cd applications/extended-languages/php
 php redis-put-get.php
 ```
 

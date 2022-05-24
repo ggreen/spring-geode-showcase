@@ -2,8 +2,6 @@ package com.vmware.spring.geode.showcase.account.controller
 
 import com.vmware.spring.geode.showcase.account.domain.account.Account
 import com.vmware.spring.geode.showcase.account.service.AccountService
-import org.springframework.cache.annotation.CacheEvict
-import org.springframework.cache.annotation.Cacheable
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

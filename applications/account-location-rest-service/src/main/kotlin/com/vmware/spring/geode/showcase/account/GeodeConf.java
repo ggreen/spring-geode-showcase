@@ -38,7 +38,7 @@ public class GeodeConf
         Interest[] interests = {new Interest(".*")};
         var bean= new ClientRegionFactoryBean<String,Location>();
         bean.setCache(gemfireCache);
-        bean.setDataPolicy(DataPolicy.NORMAL);
+        bean.setDataPolicy(DataPolicy.EMPTY);
         bean.setInterests(interests);
         return bean;
     }

@@ -124,7 +124,7 @@ spec:
               value: "T3-4"
         - name: apache-geode-perf-test-put-05
           image: cloudnativedata/apache-geode-perf-test:0.0.1-SNAPSHOT
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: "JVM_ARGS"
               value: "-Xms4g -Xmx4g -XX:+UseG1GC -XX:+PrintGCDetails -XX:MaxGCPauseMillis=10"
