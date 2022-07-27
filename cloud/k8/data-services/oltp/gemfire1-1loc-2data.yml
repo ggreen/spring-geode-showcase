@@ -1,13 +1,13 @@
-apiVersion: gemfire.tanzu.vmware.com/v1
+apiVersion: gemfire.vmware.com/v1
 kind: GemFireCluster
 metadata:
   name: gemfire1
 spec:
-  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.1
+  image:  registry.tanzu.vmware.com/pivotal-gemfire/vmware-gemfire:9.15.0
   locators:
     replicas: 1
     overrides:
-      gemfireProperties:
+      gemFireProperties:
         distributed-system-id: "1"
   servers:
     replicas: 2
@@ -32,5 +32,5 @@ spec:
         - "-Dgemfire.log-file-size-limit=100"
         - "-Dgemfire.locator-wait-time=120"
         - "-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true"
-      gemfireProperties:
+      gemFireProperties:
         distributed-system-id: "1"

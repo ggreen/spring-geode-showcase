@@ -1,0 +1,27 @@
+apiVersion: gemfire.vmware.com/v1
+kind: GemFireCluster
+metadata:
+  name: cluster-a
+  namespace: default
+spec:
+  image: registry.tanzu.vmware.com/pivotal-gemfire/vmware-gemfire:9.15.0
+  security:
+    tls: {}
+  metrics:
+    emission: Default
+  locators:
+    replicas: 1
+    resources:
+      requests:
+        memory: 1Gi
+    overrides:
+      gemFireProperties:
+        - name: "distributed-system-id"
+          value: "1"
+        - name: "remote-locators"
+          value: "cluster-b-locator-0.cluster-b-locator.default.svc.cluster.local[10334]"
+  servers:
+    replicas: 1
+    resources:
+      requests:
+        memory: 1Gi

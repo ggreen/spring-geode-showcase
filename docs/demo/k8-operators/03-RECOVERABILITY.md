@@ -3,6 +3,7 @@
 ## - Apply configuration to create addition GemFire cluster
 
 ```shell
+k apply -f cloud/k8/data-services/oltp/gemfire1-2loc-3data.yml
 k apply -f cloud/k8/data-services/oltp/gemfire2-2loc-3data.yml
 ```
 
@@ -12,23 +13,27 @@ k apply -f cloud/k8/data-services/oltp/gemfire2-2loc-3data.yml
 ```shell
 watch kubectl get pods
 ```
+export GF1_TLS_PASSWORD=$(kubectl -n default get secret gemfire1-cert -o=jsonpath='{.data.password}' | base64 -D)
+export GF2_TLS_PASSWORD=$(kubectl -n default get secret gemfire2-cert -o=jsonpath='{.data.password}' | base64 -D)
+
 
 ## - Create Gateway receiver to cluster 1 
 
 ```shell
-kubectl exec -it gemfire1-locator-0 -- gfsh -e connect -e "create gateway-receiver"
+kubectl exec -it gemfire1-locator-0 -- gfsh -e "connect --locator=gemfire1-locator-0.gemfire1-locator.default.svc.cluster.local[10334] --trust-store=/certs/truststore.p12 --trust-store-password=$GF1_TLS_PASSWORD --key-store=/certs/keystore.p12 --key-store-password=$GF1_TLS_PASSWORD" -e "create gateway-receiver"
 ```
 
 ## - Gateway sender from cluster 2 to cluster 1 for account region
 
+
 ```shell
-kubectl exec -it gemfire2-locator-0 -- gfsh -e connect  -e "create gateway-sender --id=Account_Sender_to_1 --parallel=true  --remote-distributed-system-id=1 --enable-persistence=true --enable-batch-conflation=true"
+kubectl exec -it gemfire2-locator-0 -- gfsh -e "connect --locator=gemfire1-locator-0.gemfire1-locator.default.svc.cluster.local[10334] --trust-store=/certs/truststore.p12 --trust-store-password=$GF2_TLS_PASSWORD --key-store=/certs/keystore.p12 --key-store-password=$GF2_TLS_PASSWORD"  -e "create gateway-sender --id=Account_Sender_to_1 --parallel=true  --remote-distributed-system-id=1 --enable-persistence=true --enable-batch-conflation=true"
 ```
 
 ## - Create Account region to use the Gateway sender from cluster 2 to cluster 1
 
 ```shell
-kubectl exec -it gemfire2-locator-0 -- gfsh -e connect -e "create region --name=Account --type=PARTITION_REDUNDANT_PERSISTENT --gateway-sender-id=Account_Sender_to_1"
+kubectl exec -it gemfire2-locator-0 -- gfsh -e "connect --locator=gemfire1-locator-0.gemfire1-locator.default.svc.cluster.local[10334] --trust-store=/certs/truststore.p12 --trust-store-password=$GF2_TLS_PASSWORD --key-store=/certs/keystore.p12 --key-store-password=$GF2_TLS_PASSWORD" -e "create region --name=Account --type=PARTITION_REDUNDANT_PERSISTENT --gateway-sender-id=Account_Sender_to_1"
 ```
 
 ## - Create Location region to use the Gateway sender from cluster 2 to cluster 1

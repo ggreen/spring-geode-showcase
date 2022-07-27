@@ -1,23 +1,19 @@
-apiVersion: gemfire.tanzu.vmware.com/v1
+apiVersion: gemfire.vmware.com/v1
 kind: GemFireCluster
 metadata:
   name: gemfire1
 spec:
-  image: registry.pivotal.io/tanzu-gemfire-for-kubernetes/gemfire-k8s:1.0.1
+  image:  registry.tanzu.vmware.com/pivotal-gemfire/vmware-gemfire:9.15.0
   locators:
     replicas: 2
     overrides:
-      gemfireProperties:
-        distributed-system-id: "1"
+      gemFireProperties:
+        - name: "distributed-system-id"
+          value: "1"
   servers:
     replicas: 3
     overrides:
       jvmOptions:
-        - "-Djava.awt.headless=true"
-        - "-Dsun.rmi.dgc.server.gcInterval=9223372036854775806"
-        - "-XX:+UseG1GC"
-        - "-XX:+PrintGCDetails"
-        - "-XX:MaxGCPauseMillis=40"
         - "-Xms674m"
         - "-Xmx674m"
         - "-Dgemfire.statistic-sample-rate=5000"
@@ -32,5 +28,6 @@ spec:
         - "-Dgemfire.log-file-size-limit=100"
         - "-Dgemfire.locator-wait-time=120"
         - "-Dgemfire.ALLOW_PERSISTENT_TRANSACTIONS=true"
-      gemfireProperties:
-        distributed-system-id: "1"
+      gemFireProperties:
+        - name: "distributed-system-id"
+          value: "1"
