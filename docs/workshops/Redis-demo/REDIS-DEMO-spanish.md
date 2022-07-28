@@ -30,6 +30,11 @@ Puede tener varios servidores en un clúster para obtener datos de alta disponib
 start server --name=redisServer2 --locators=localhost[10334]  --server-port=40405   --J=-Dgemfire-for-redis-port=6380  --J=-Dgemfire-for-redis-enabled=true --classpath=/Users/devtools/repositories/IMDG/gemfire/gemfire-for-redis-apps-1.0.0/lib/*
 ```
 
+Ver detalles del clúster
+
+```shell
+open http://localhost:7070/pulse
+```
 ----------------
 Conéctese con la CLI de Redis
 
@@ -44,7 +49,6 @@ Ejecutar PING
 
 ```shell
 127.0.0.1:6379> PING
-
 ```
 
 
