@@ -7,14 +7,26 @@ namespace dotnet
     {
         static void Main(string[] args)
         {
+            //Connection maybe slow
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
 
             IDatabase db = redis.GetDatabase();
 
-            db.StringSet("hello", "hello world");
+            var writeTime = new System.Diagnostics.Stopwatch();
+            string value = "";
 
-            string value = db.StringGet("hello");
-            Console.WriteLine(value); // writes: "abcdefg"
+            db.StringSet("hello", "hello world");
+            writeTime.Stop();
+            Console.WriteLine($"Write Time: {writeTime.ElapsedMilliseconds} ms");
+
+            var readTime = new System.Diagnostics.Stopwatch();
+            value = db.StringGet("hello");
+            readTime.Stop();
+            Console.WriteLine($"Read Time: {readTime.ElapsedMilliseconds} ms");
+
+
+
+            Console.WriteLine(value);
         }
     }
 }
