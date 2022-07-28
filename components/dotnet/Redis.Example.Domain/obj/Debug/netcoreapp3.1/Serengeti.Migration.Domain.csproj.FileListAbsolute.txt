@@ -1,0 +1,9 @@
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/bin/Debug/netcoreapp3.1/Serengeti.Migration.Domain.deps.json
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/bin/Debug/netcoreapp3.1/Serengeti.Migration.Domain.dll
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/bin/Debug/netcoreapp3.1/Serengeti.Migration.Domain.pdb
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.csprojAssemblyReference.cache
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.AssemblyInfoInputs.cache
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.AssemblyInfo.cs
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.csproj.CoreCompileInputs.cache
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.dll
+/Users/Projects/Federal/NCCT/dev/serengeti-migration-examples/components/Serengeti.Migration.Example.Domain/obj/Debug/netcoreapp3.1/Serengeti.Migration.Domain.pdb

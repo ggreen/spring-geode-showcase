@@ -1,0 +1,9 @@
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/bin/Debug/netcoreapp3.1/Redis.Example.Domain.deps.json
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/bin/Debug/netcoreapp3.1/Redis.Example.Domain.dll
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/bin/Debug/netcoreapp3.1/Redis.Example.Domain.pdb
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.csprojAssemblyReference.cache
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.AssemblyInfoInputs.cache
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.AssemblyInfo.cs
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.csproj.CoreCompileInputs.cache
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.dll
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Example.Domain/obj/Debug/netcoreapp3.1/Redis.Example.Domain.pdb

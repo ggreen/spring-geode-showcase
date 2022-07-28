@@ -1,0 +1,3 @@
+Serengeti.Migration.ExampleProcessor.App.Test.StateMgmt.Serialization.JsonSerdeTest.Serializization
+Serengeti.Migration.ExampleProcessor.App.Test.StateMgmt.Serialization.JsonSerdeTest.Deserialize
+Serengeti.Migration.ExampleProcessor.App.Test.StateMgmt.Serialization.JsonSerdeTest.Deserialize_Empty

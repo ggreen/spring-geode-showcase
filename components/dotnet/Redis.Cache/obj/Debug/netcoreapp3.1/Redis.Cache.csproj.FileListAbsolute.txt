@@ -1,0 +1,4 @@
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Cache/obj/Debug/netcoreapp3.1/Redis.Cache.csprojAssemblyReference.cache
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Cache/obj/Debug/netcoreapp3.1/Redis.Cache.AssemblyInfoInputs.cache
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Cache/obj/Debug/netcoreapp3.1/Redis.Cache.AssemblyInfo.cs
+/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/components/dotnet/Redis.Cache/obj/Debug/netcoreapp3.1/Redis.Cache.csproj.CoreCompileInputs.cache
