@@ -14,7 +14,7 @@
     <name>account-jdbc-caching-rest-service</name>
     <description>account-jdbc-caching-rest-service</description>
     <properties>
-		<geode.version>1.13.1</geode.version>
+		<geode.version>1.15.1</geode.version>
         <java.version>11</java.version>
         <kotlin.version>1.5.31</kotlin.version>
         <spring-geode.version>1.5.4</spring-geode.version>
