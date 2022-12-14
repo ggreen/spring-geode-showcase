@@ -13,12 +13,12 @@
     <modules>
         <module>components/account-domain</module>
         <module>components/account-functions</module>
-        <module>applications/account-location-durable-event-service</module>
 	     <module>applications/account-rest-service</module>
          <module>applications/account-location-rest-service</module>
         <module>applications/account-jdbc-caching-rest-service</module>
         <module>applications/account-location-event-service</module>
         <module>applications/gateway-load-balancer-service</module>
+        <module>applications/multi-cluster-demo-app</module>
     </modules>
     <build>
         <pluginManagement>
