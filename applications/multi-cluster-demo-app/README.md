@@ -113,11 +113,11 @@ contentType = application/json
 
 ```shell
 mvn install
-cd applications/customer-order-app
+cd applications/multi-cluster-demo-app
 mvn spring-boot:build-image
 
-docker tag customer-order-app:0.0.2-SNAPSHOT cloudnativedata/customer-order-app:0.0.2-SNAPSHOT
-docker push cloudnativedata/customer-order-app:0.0.2-SNAPSHOT
+docker tag multi-cluster-demo-app:0.0.2-SNAPSHOT cloudnativedata/multi-cluster-demo-app:0.0.2-SNAPSHOT
+docker push cloudnativedata/multi-cluster-demo-app:0.0.2-SNAPSHOT
 ```
 
 ### Reference Documentation
@@ -125,11 +125,7 @@ For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.0.0/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.0.0/maven-plugin/reference/html/#build-image)
 * [Spring Web](https://docs.spring.io/spring-boot/docs/3.0.0/reference/htmlsingle/#web)
-* [Apache Freemarker](https://docs.spring.io/spring-boot/docs/3.0.0/reference/htmlsingle/#web.servlet.spring-mvc.template-engines)
-* [Spring for RabbitMQ](https://docs.spring.io/spring-boot/docs/3.0.0/reference/htmlsingle/#messaging.amqp)
-* [Cloud Stream](https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#spring-cloud-stream-overview-introducing)
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/3.0.0/reference/htmlsingle/#actuator)
 
 ### Guides
