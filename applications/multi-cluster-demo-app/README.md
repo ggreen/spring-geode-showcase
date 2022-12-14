@@ -116,8 +116,8 @@ mvn install
 cd applications/multi-cluster-demo-app
 mvn spring-boot:build-image
 
-docker tag multi-cluster-demo-app:0.0.2-SNAPSHOT cloudnativedata/multi-cluster-demo-app:0.0.2-SNAPSHOT
-docker push cloudnativedata/multi-cluster-demo-app:0.0.2-SNAPSHOT
+docker tag multi-cluster-demo-app:0.0.1-SNAPSHOT cloudnativedata/multi-cluster-demo-app:0.0.1-SNAPSHOT
+docker push cloudnativedata/multi-cluster-demo-app:0.0.1-SNAPSHOT
 ```
 
 ### Reference Documentation
