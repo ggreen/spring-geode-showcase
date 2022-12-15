@@ -10,6 +10,9 @@ spring:
         gemfireone:
           locators: 127.0.0.1[10001]
         gemfiretwo:
-          locators: 127.0.0.1[10002]
+          locators:
+            host: 127.0.0.1
+            port: 10002
+            name: "GemFireTwo"
       cache:
         name: ${spring.application.name}
