@@ -94,7 +94,24 @@ Create region
 ```shell
 create region --name=Member --type=PARTITION
 ```
+--------
 
+
+Connect to GF 1
+
+```shell
+connect --locator=127.0.0.1[10001]
+list clients
+```
+
+Connect to GF 2
+
+```shell
+connect --locator=127.0.0.1[10002]
+list clients
+```
+
+----------
 
 contentType = application/json
 

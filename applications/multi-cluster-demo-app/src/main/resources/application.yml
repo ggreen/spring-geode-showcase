@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: "multi-cluster-demo-app"
+  data:
+    gemfire:
+      pool:
+        locators: 127.0.0.1[10001]
+        default:
+          locators: 127.0.0.1[10001]
+        gemfireone:
+          locators: 127.0.0.1[10001]
+        gemfiretwo:
+          locators: 127.0.0.1[10002]
+      cache:
+        name: ${spring.application.name}

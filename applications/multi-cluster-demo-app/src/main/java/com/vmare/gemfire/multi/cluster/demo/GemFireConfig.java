@@ -11,15 +11,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
+import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
 import org.springframework.data.gemfire.config.annotation.EnablePool;
 import org.springframework.data.gemfire.config.annotation.EnablePools;
 
 @Configuration
+@ClientCacheApplication
 @EnablePools(pools = {
         @EnablePool(name = "GemFireOne"),
         @EnablePool(name = "GemFireTwo")
         })
-
 public class GemFireConfig {
 
     @Value("${spring.data.gemfire.pool.default.locators}")
@@ -27,23 +28,25 @@ public class GemFireConfig {
 
     @Bean
     ClientRegionFactoryBean<String, Claim> claimRegion(GemFireCache gemFireCache,
-                                                       @Qualifier("GemFireOne") Pool poolForPccTwo)
+                                                       @Qualifier("GemFireOne") Pool gemFireOnePool)
     {
         var region = new ClientRegionFactoryBean();
         region.setCache(gemFireCache);
         region.setDataPolicy(DataPolicy.EMPTY);
         region.setName("Claim");
+        region.setPool(gemFireOnePool);
         return region;
     }
 
     @Bean
     ClientRegionFactoryBean<String, Member> memberRegion(GemFireCache gemFireCache,
-                                                         @Qualifier("GemFireTwo") Pool poolForPccTwo)
+                                                         @Qualifier("GemFireTwo") Pool gemfireTwoPool)
     {
         var region = new ClientRegionFactoryBean();
         region.setCache(gemFireCache);
         region.setDataPolicy(DataPolicy.EMPTY);
         region.setName("Member");
+        region.setPool(gemfireTwoPool);
         return region;
     }
 }
