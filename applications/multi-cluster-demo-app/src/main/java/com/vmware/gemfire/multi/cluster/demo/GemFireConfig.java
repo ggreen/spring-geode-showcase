@@ -1,8 +1,8 @@
-package com.vmare.gemfire.multi.cluster.demo;
+package com.vmware.gemfire.multi.cluster.demo;
 
 
-import com.vmare.gemfire.multi.cluster.demo.domain.Claim;
-import com.vmare.gemfire.multi.cluster.demo.domain.Member;
+import com.vmware.gemfire.multi.cluster.demo.domain.Claim;
+import com.vmware.gemfire.multi.cluster.demo.domain.Member;
 import org.apache.geode.cache.DataPolicy;
 import org.apache.geode.cache.GemFireCache;
 import org.apache.geode.cache.client.Pool;
@@ -11,16 +11,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
-import org.springframework.data.gemfire.config.annotation.ClientCacheApplication;
-import org.springframework.data.gemfire.config.annotation.EnablePool;
-import org.springframework.data.gemfire.config.annotation.EnablePools;
+import org.springframework.data.gemfire.config.annotation.*;
 
 @Configuration
 @ClientCacheApplication
+@EnableSecurity
 @EnablePools(pools = {
         @EnablePool(name = "GemFireOne")
         })
+@DependsOn("gfSecuritiesEnvSpringLocator")
 public class GemFireConfig {
 
     @Value("${spring.data.gemfire.pool.default.locators}")

@@ -3,6 +3,15 @@ spring:
     name: "multi-cluster-demo-app"
   data:
     gemfire:
+      security:
+        cluster2:
+          regExp: "^localhost.*(10002|10102)$"
+          username: admin2
+          password: admin
+        client:
+          authentication-initializer: "com.vmware.gemfire.multi.cluster.demo.security.MultiClusterAuthInit.instance"
+        username: admin
+        password:  admin
       pool:
         locators: 127.0.0.1[10001]
         default:
@@ -16,3 +25,8 @@ spring:
             name: "GemFireTwo"
       cache:
         name: ${spring.application.name}
+pring:
+  data:
+    gemfire:
+      security:
+        username:

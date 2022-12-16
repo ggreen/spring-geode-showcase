@@ -1,12 +1,11 @@
-package com.vmare.gemfire.multi.cluster.demo.domain;
+package com.vmware.gemfire.multi.cluster.demo.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Claim {
-
+public class Member {
     private String id;
-    private String name;
+    private String email;
 }

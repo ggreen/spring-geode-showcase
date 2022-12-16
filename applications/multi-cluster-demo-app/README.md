@@ -37,13 +37,24 @@ Start Gfsh
 cd $GEMFIRE_HOME/bin
 ./gfsh
 ```
+
+
+------------------------------------
+
+Generate Encrypted Password
+
+```shell
+java -classpath applications/libs/nyla.solutions.core-2.0.0.jar -DCRYPTION_KEY=PIVOTAL  nyla.solutions.core.util.Cryption MYPASSWORD
+```
+
+
 -------------------------------------
 ## Start Cluster 1 
 In Gfsh
 
 Start Locator 
 ```shell
-start locator --name=gf1-locator  --port=10001 --J=-Dgemfire.jmx-manager-port=1099 --max-heap=250m --initial-heap=250m --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
+start locator --name=gf1-locator --J="-DCRYPTION_KEY=PIVOTAL" --J="-Dconfig.properties=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/deployments/local/secret/config/gemfire-one-users.properties" --J=-Dgemfire.security-manager=io.pivotal.dataTx.geode.security.UserSecurityManager  --classpath=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/applications/libs/* --enable-cluster-configuration=true --connect=false --port=10001 --J=-Dgemfire.jmx-manager-port=1099 --max-heap=250m --initial-heap=250m --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
 ```
 Configure PDX
 
@@ -52,7 +63,7 @@ configure pdx --read-serialized=true --disk-store
 ```
 
 ```shell
-start server --name=gf1-server  --server-port=10101   --locators=127.0.0.1[10001] --max-heap=1g   --initial-heap=1g  --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
+start server --name=gf1-server --use-cluster-configuration=true --J="-DCRYPTION_KEY=PIVOTAL"  --J="-Dconfig.properties=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/deployments/local/secret/config/gemfire-one-users.properties" --user=admin --password="admin" --J=-Dgemfire.security-manager=io.pivotal.dataTx.geode.security.UserSecurityManager  --classpath=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/applications/libs/*  --server-port=10101   --locators=127.0.0.1[10001] --max-heap=1g   --initial-heap=1g  --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
 ```
 
 Create region 
@@ -73,7 +84,7 @@ cd $GEMFIRE_HOME/bin
 
 Start Locator
 ```shell
-start locator --name=gf2-locator --http-service-port=0 --J=-Dgemfire.tcp-port=11111 --port=10002 --J=-Dgemfire.jmx-manager-port=1098 --max-heap=250m --initial-heap=250m --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
+start locator --name=gf2-locator --J="-DCRYPTION_KEY=PIVOTAL" --J="-Dconfig.properties=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/deployments/local/secret/config/gemfire-two-users.properties" --J=-Dgemfire.security-manager=io.pivotal.dataTx.geode.security.UserSecurityManager  --classpath=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/applications/libs/* --enable-cluster-configuration=true --connect=false  --http-service-port=0 --J=-Dgemfire.tcp-port=11111 --port=10002 --J=-Dgemfire.jmx-manager-port=1098 --max-heap=250m --initial-heap=250m --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1 
 ```
 Configure PDX
 
@@ -82,7 +93,7 @@ configure pdx --read-serialized=true --disk-store
 ```
 
 ```shell
-start server --name=gf2-server  --server-port=10102   --locators=127.0.0.1[10002] --max-heap=1g   --initial-heap=1g  --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
+start server --name=gf2-server --use-cluster-configuration=true --J="-DCRYPTION_KEY=PIVOTAL"  --J="-Dconfig.properties=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/deployments/local/secret/config/gemfire-two-users.properties" --user=admin2 --password="admin" --J=-Dgemfire.security-manager=io.pivotal.dataTx.geode.security.UserSecurityManager  --classpath=/Users/Projects/VMware/Tanzu/TanzuData/TanzuGemFire/dev/spring-geode-showcase/applications/libs/*  --server-port=10102   --locators=127.0.0.1[10002] --max-heap=1g   --initial-heap=1g  --bind-address=127.0.0.1 --hostname-for-clients=127.0.0.1  --jmx-manager-hostname-for-clients=127.0.0.1 --http-service-bind-address=127.0.0.1
 ```
 
 Create region
