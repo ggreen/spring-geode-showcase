@@ -9,7 +9,6 @@ A custom implementation of the [AuthInitialize](https://gemfire.docs.pivotal.io/
 See the [reference implementation](https://github.com/ggreen/spring-geode-showcase/tree/master/applications/multi-cluster-demo-app) 
 
 
-See [GemFire getting started](https://docs.vmware.com/en/VMware-Tanzu-GemFire/9.10/tgf/GUID-getting_started-installation-obtain_gemfire_maven.html)
 
 
 Use Case
@@ -34,10 +33,10 @@ Test Scenario
 - Test insert payment in cluster 2
 
 
-
-
-
 # Start GemFire 
+
+
+See [GemFire getting started](https://docs.vmware.com/en/VMware-Tanzu-GemFire/9.10/tgf/GUID-getting_started-installation-obtain_gemfire_maven.html)
 
 Start Gfsh
 
