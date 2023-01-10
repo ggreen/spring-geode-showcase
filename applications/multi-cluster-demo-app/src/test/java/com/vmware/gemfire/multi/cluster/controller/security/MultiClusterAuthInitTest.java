@@ -1,5 +1,6 @@
-package com.vmware.gemfire.multi.cluster.demo.security;
+package com.vmware.gemfire.multi.cluster.controller.security;
 
+import com.vmware.gemfire.multi.cluster.controller.security.MultiClusterAuthInit;
 import org.apache.geode.distributed.DistributedMember;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

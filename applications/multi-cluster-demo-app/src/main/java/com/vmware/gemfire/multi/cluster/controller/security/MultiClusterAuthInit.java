@@ -1,4 +1,4 @@
-package com.vmware.gemfire.multi.cluster.demo.security;
+package com.vmware.gemfire.multi.cluster.controller.security;
 
 import org.apache.geode.distributed.DistributedMember;
 import org.apache.geode.security.AuthInitialize;

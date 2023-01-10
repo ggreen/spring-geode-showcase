@@ -1,4 +1,4 @@
-package com.vmware.gemfire.multi.cluster.demo;
+package com.vmware.gemfire.multi.cluster.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.vmware.gemfire.multi.cluster.demo.domain;
+package com.vmware.gemfire.multi.cluster.controller.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

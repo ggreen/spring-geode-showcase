@@ -1,7 +1,8 @@
-package com.vmware.gemfire.multi.cluster.demo.controller;
+package com.vmware.gemfire.multi.cluster.controller;
 
-import com.vmware.gemfire.multi.cluster.demo.domain.Member;
-import com.vmware.gemfire.multi.cluster.demo.repository.MemberRepository;
+import com.vmware.gemfire.multi.cluster.controller.controller.MemberController;
+import com.vmware.gemfire.multi.cluster.controller.domain.Member;
+import com.vmware.gemfire.multi.cluster.controller.repository.MemberRepository;
 import nyla.solutions.core.patterns.creational.generator.JavaBeanGeneratorCreator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

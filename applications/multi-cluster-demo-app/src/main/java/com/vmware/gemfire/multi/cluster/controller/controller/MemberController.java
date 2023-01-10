@@ -1,7 +1,7 @@
-package com.vmware.gemfire.multi.cluster.demo.controller;
+package com.vmware.gemfire.multi.cluster.controller.controller;
 
-import com.vmware.gemfire.multi.cluster.demo.domain.Member;
-import com.vmware.gemfire.multi.cluster.demo.repository.MemberRepository;
+import com.vmware.gemfire.multi.cluster.controller.domain.Member;
+import com.vmware.gemfire.multi.cluster.controller.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

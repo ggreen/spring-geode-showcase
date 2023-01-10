@@ -1,8 +1,8 @@
-package com.vmware.gemfire.multi.cluster.demo;
+package com.vmware.gemfire.multi.cluster.controller;
 
 
-import com.vmware.gemfire.multi.cluster.demo.domain.Claim;
-import com.vmware.gemfire.multi.cluster.demo.domain.Member;
+import com.vmware.gemfire.multi.cluster.controller.domain.Claim;
+import com.vmware.gemfire.multi.cluster.controller.domain.Member;
 import org.apache.geode.cache.DataPolicy;
 import org.apache.geode.cache.GemFireCache;
 import org.apache.geode.cache.client.Pool;

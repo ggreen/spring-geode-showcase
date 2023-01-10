@@ -1,4 +1,4 @@
-package com.vmware.gemfire.multi.cluster.demo.security;
+package com.vmware.gemfire.multi.cluster.controller.security;
 
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;

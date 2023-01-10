@@ -19,6 +19,7 @@
         <module>applications/account-location-event-service</module>
         <module>applications/gateway-load-balancer-service</module>
         <module>applications/multi-cluster-demo-app</module>
+        <module>applications/spring-gf-redis-server</module>
     </modules>
     <build>
         <pluginManagement>
