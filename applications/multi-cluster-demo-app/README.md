@@ -10,34 +10,36 @@ The [getCredentials](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/
 You can use the member information such as the [getId()](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/geode/distributed/DistributedMember.html#getId--) to determine which credential to return.
 
 
-See the reference implementation 
+See the [reference implementation](https://github.com/ggreen/spring-geode-showcase/tree/master/applications/multi-cluster-demo-app) 
 
 
-https://docs.vmware.com/en/VMware-Tanzu-GemFire/9.10/tgf/GUID-getting_started-installation-obtain_gemfire_maven.html
+See [GemFire getting started](https://docs.vmware.com/en/VMware-Tanzu-GemFire/9.10/tgf/GUID-getting_started-installation-obtain_gemfire_maven.html)
 
 
 Use Case
 
-```
+
 GemFire Spring client  multi-cluster connections pattern
 
 
 - Connect two GemFireCluster 
-- Hosted in TAS
-- support multiple credential
-- Spring Boot 
-- spring Data GemFire
-- Claims region (in cluster 1) and member region (cluster 2)
-- Test services insert claim in the cluster 1
+- Can be hosted in TAS or Kubernetes
+- Support multiple credentials
+- Use Spring Boot and Spring Data GemFire
+- Multiple regions in difference clusters
+    - claims region (in cluster 1) 
+    - member region (cluster 2)
+      Should [follow example](https://docs.spring.io/spring-boot-data-geode-build/current/reference/html5/#cloudfoundry-cloudcache-multiinstance-using)
+
+
+Test Scenario
+
+- Insert claim in the cluster 1
 - Test insert payment in cluster 2
-- Test reading 
-https://docs.spring.io/spring-boot-data-geode-build/current/reference/html5/#cloudfoundry-cloudcache-multiinstance-using
-- Work with JDK 8
-- Should follow customer provided example  
 
 
 
-```
+
 
 # Start GemFire 
 
