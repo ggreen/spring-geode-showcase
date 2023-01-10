@@ -6,7 +6,7 @@ This example application illustrates connecting to multiple GemFire cluster with
 A custom implementation of the [AuthInitialize](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/geode/security/AuthInitialize.html) is needed to determine which credential is needed to authenticate to a cluster. The [getCredentials](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/geode/security/AuthInitialize.html#getCredentials-java.util.Properties-org.apache.geode.distributed.DistributedMember-boolean-) method is passed the [DistributedMember](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/geode/distributed/DistributedMember.html). You can use the member information such as the [getId()](https://gemfire.docs.pivotal.io/apidocs/tgf-915/org/apache/geode/distributed/DistributedMember.html#getId--) to determine which credential to return.
 
 
-See the [reference implementation](https://github.com/ggreen/spring-geode-showcase/tree/master/applications/multi-cluster-demo-app) 
+See the [AuthInitialize reference implementation](https://github.com/ggreen/spring-geode-showcase/blob/master/applications/multi-cluster-demo-app/src/main/java/com/vmware/gemfire/multi/cluster/controller/security/MultiClusterAuthInit.java) 
 
 
 
