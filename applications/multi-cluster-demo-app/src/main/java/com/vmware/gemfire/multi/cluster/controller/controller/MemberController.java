@@ -5,6 +5,10 @@ import com.vmware.gemfire.multi.cluster.controller.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST endpoint to READ/WRITE access to member data
+ * @author gregory green
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("members")

@@ -11,6 +11,15 @@ import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
+/**
+ * Support providing creaentials for two different GemFire clusters.
+ *
+ * Uses the spring.data.gemfire.security.cluster2.regExp to determine if
+ * the given member Ids is the related to cluster1 or cluster2.
+ *
+ * The object is provided the Spring Environment from GfSecuritiesEnvSpringLocator
+ * @author gregory green
+ */
 @Component
 public class MultiClusterAuthInit implements AuthInitialize {
 

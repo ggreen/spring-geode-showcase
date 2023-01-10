@@ -5,6 +5,10 @@ import com.vmware.gemfire.multi.cluster.controller.repository.ClaimRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST endpoint to READ/WRITE access to claim data
+ * @author gregory green
+ */
 @RestController
 @RequestMapping("claims")
 @AllArgsConstructor
