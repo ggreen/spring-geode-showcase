@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.pivotal.services.dataTx</groupId>
+  <artifactId>circuitBreakerFunctions</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0</version>
+  <name>circuitBreakerFunctions</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.javadoc.skip>false</maven.javadoc.skip>
+    <gemfire.version>9.3.0</gemfire.version>
+    <jacoco.method.coverage>0.0</jacoco.method.coverage>
+    <findbugs.skip>true</findbugs.skip>
+    <!-- gemfire.version>9.1.0</gemfire.version-->
+  </properties>
+  <repositories>
+    <repository>
+      <id>gemfire-release-repo</id>
+      <name>Pivotal GemFire Release Repository</name>
+      <url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url>
+    </repository>
+    <repository>
+      <id>central</id>
+      <name>Central Repository</name>
+      <url>http://repo.maven.apache.org/maven2</url>
+      <layout>default</layout>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>io.pivotal.gemfire</groupId>
+      <artifactId>geode-core</artifactId>
+      <version>${gemfire.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.pivotal.gemfire</groupId>
+      <artifactId>geode-wan</artifactId>
+      <version>${gemfire.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.pivotal.gemfire</groupId>
+      <artifactId>geode-cq</artifactId>
+      <version>${gemfire.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.pivotal.gemfire</groupId>
+      <artifactId>geode-lucene</artifactId>
+      <version>${gemfire.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>2.7.22</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>
