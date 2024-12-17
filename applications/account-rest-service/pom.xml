@@ -15,7 +15,7 @@
     <description>account-rest-service</description>
     <properties>
         <java.version>11</java.version>
-        <geode.version>1.13.1</geode.version>
+        <geode.version>1.15.1</geode.version>
         <spring-geode.version>1.5.2</spring-geode.version>
     </properties>
     <dependencies>
