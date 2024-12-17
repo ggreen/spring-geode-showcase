@@ -7,7 +7,7 @@
     <name>account-functions</name>
     <description>account-functions</description>
     <properties>
-        <geode.version>1.13.1</geode.version>
+        <geode.version>1.15.1</geode.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
